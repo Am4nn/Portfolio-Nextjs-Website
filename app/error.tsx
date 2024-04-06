@@ -19,7 +19,9 @@ export default function Error({
     <div>
       <h2>Something went wrong!</h2>
       {/* Attempt to recover by trying to re-render the segment */}
-      <button onClick={reset}>Try again</button>
+      <button style={{
+        border: '1px solid #ccc', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer'
+      }} onClick={reset}>Try again</button>
     </div>
   )
 }

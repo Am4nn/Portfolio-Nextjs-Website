@@ -1,47 +1,60 @@
-"use client";
+"use client"
+
 import React, { useState, useEffect } from 'react'
 import { useMediaQuery } from '@mui/material';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from '@/components/ui/Icons';
 import { socialMediaDetails } from '@/utils/config';
 import styles from './LeftSideBar.module.css';
 
-const mountDelay = 600 + 1000;
-const loaderDelay = 1000;
-const animationClass = "fadeup";
+const socialSideBarLoaderDelay = 0.3; // in seconds
+const socialSideBarMountDelay = 500 + 1000; // in milliseconds
 
 const LeftBottomSide = ({ children }: { children: React.ReactNode }) => (
-  <div className={[styles.StyledSideElement, styles.left].join(" ")}>
+  <motion.div className={[styles.StyledSideElement, styles.left].join(" ")}>
     {children}
-  </div>
+  </motion.div>
 );
 
 export function SocialSideBar() {
-
   const [isMounted, setIsMounted] = useState(false);
-
   const isMobile = useMediaQuery('(max-width: 767.5px)');
 
   useEffect(() => {
     if (isMobile) return;
-    const timeout = setTimeout(() => setIsMounted(true), mountDelay);
+    const timeout = setTimeout(() => setIsMounted(true), socialSideBarMountDelay);
     return () => clearTimeout(timeout);
   }, [isMobile]);
 
   if (isMobile) return null;
   return (
     <LeftBottomSide>
-      <ul className={styles.StyledSocialList}>
-        {socialMediaDetails && [{}, ...socialMediaDetails, {}].map(({ url, name }: { url?: string, name?: string }, i) => (
-          <li key={`social-icon-li-${i}`}>
-            {url ?
-              <a href={url} aria-label={name} target="_blank" rel="noreferrer">
-                <Icon name={name} />
-              </a>
-              : <div className={styles.bar} style={{ transitionDelay: `${i + 1}00ms` }} />
-            }
-          </li>
-        ))}
-      </ul>
+      <AnimatePresence>
+        {isMounted && (
+          <motion.ul
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: socialSideBarLoaderDelay }}
+            className={styles.StyledSocialList}
+          >
+            {socialMediaDetails && [{}, ...socialMediaDetails, {}].map(({ url, name }: { url?: string, name?: string }, i) => (
+              <motion.li
+                key={`social-icon-li-${i}`}
+                initial={{ y: 20, opacity: 0, scale: 0.6, filter: "blur(20px)" }}
+                animate={{ y: 0, opacity: 1, scale: 1, filter: "blur(0px)" }}
+                transition={{ duration: socialSideBarLoaderDelay, delay: i * 0.1 }}
+              >
+                {url ?
+                  <a href={url} aria-label={name} target="_blank" rel="noreferrer">
+                    <Icon name={name} />
+                  </a> :
+                  <div className={styles.bar} />
+                }
+              </motion.li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </LeftBottomSide>
   )
 };
