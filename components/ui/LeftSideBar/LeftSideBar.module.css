@@ -1,0 +1,106 @@
+.StyledSideElement {
+  width: 40px;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+}
+
+.left {
+  left: 40px;
+  right: auto;
+}
+
+@media (max-width: 1080px) {
+  .left {
+    left: 20px;
+    right: auto;
+  }
+}
+
+@media (max-width: 767.5px) {
+  .StyledSideElement {
+    display: none;
+  }
+}
+
+.StyledSocialList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.StyledSocialList li:first-of-type {
+  margin-bottom: 20px;
+}
+
+.StyledSocialList li:last-of-type {
+  margin-top: 20px;
+}
+
+.StyledSocialList li a {
+  padding: 10px;
+  font-size: var(20px);
+  line-height: 1.3;
+
+  transform: translateY(0px);
+}
+
+.StyledSocialList li a:hover,
+.StyledSocialList li a:focus {
+  transform: translateY(-3px);
+}
+
+.StyledSocialList li a svg {
+  width: 20px;
+  height: 20px;
+}
+
+.StyledSocialList li a img,
+.StyledSocialList li a svg {
+  width: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.StyledSocialList li a img[alt=""],
+.StyledSocialList li a img:not([alt]) {
+  filter: blur(5px);
+}
+
+.StyledSocialList li a svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  vertical-align: middle;
+}
+
+.feather {
+  fill: none;
+}
+
+.StyledSocialList li a {
+  display: inline-block;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  color: inherit;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  color: hsl(166, 100%, 90%);
+}
+
+.StyledSocialList li a:hover,
+.StyledSocialList li a:focus {
+  color: hsl(345, 100%, 85%);
+}
+
+.bar {
+  display: block;
+  width: 1px;
+  height: 90px;
+  margin: 0 auto;
+  background-color: hsl(184, 100%, 85%);
+  background-color: rgb(255 255 255 / 0.4);
+}

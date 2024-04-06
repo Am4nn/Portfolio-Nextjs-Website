@@ -1,0 +1,16 @@
+.text::after {
+  content: '_';
+  visibility: hidden;
+  display: none;
+}
+
+.glyph {
+  font-family: 'ヒラギノ角ゴ Pro W3, Hiragino Kaku Gothic Pro, Hiragino Sans, Osaka, メイリオ, Meiryo, Segoe UI, sans-serif';
+  opacity: 0.8;
+  font-weight: 400;
+  line-height: 0;
+}
+
+.value {
+  opacity: 1;
+}
