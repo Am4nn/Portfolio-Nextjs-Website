@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
-import DarkModeSwitch from "@/components/ui/DarkModeSwitch/DarkModeSwitch";
+import ThemeSwitch from "@/components/ui/ThemeSwitch/ThemeSwitch";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -46,7 +46,8 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem
         >
-          <DarkModeSwitch />
+          <ThemeSwitch />
+
           <QueryProvider>
             {children}
           </QueryProvider>

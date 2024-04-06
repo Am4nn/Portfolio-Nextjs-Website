@@ -7,7 +7,7 @@ import { Box, IconButton } from '@mui/material';
 import { MoonIcon, SunIcon } from './Icons';
 import Image from 'next/image';
 
-export default function DarkModeSwitch() {
+export default function ThemeSwitch() {
   const [mounted, setMounted] = React.useState(false)
   const { setTheme, resolvedTheme } = useTheme()
 
@@ -39,9 +39,10 @@ export default function DarkModeSwitch() {
           priority={false}
           title="Loading Light/Dark Toggle"
           style={{ opacity: 0 }}
+          aria-label='loading-theme-switch-button'
         />
         :
-        <IconButton sx={{ width: 50, height: 50, ml: 1 }} onClick={toggleTheme}>
+        <IconButton id='theme-switch-button' aria-label='theme-switch-button' title='theme-switch-button' sx={{ width: 50, height: 50, ml: 1 }} onClick={toggleTheme}>
           {resolvedTheme === 'dark' ? <MoonIcon /> : <SunIcon />}
         </IconButton>
       }
