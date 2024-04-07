@@ -1,0 +1,37 @@
+.show {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+}
+
+.button {
+    position: fixed;
+    z-index: 999;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    display: grid;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+    place-items: center;
+    border-radius: 9999px;
+    border-style: none;
+    padding: 0px;
+    color: rgb(108 121 131/ 1);
+    background-color: rgb(0 0 0 /0.5);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    opacity: 0;
+    transform: translate(0, 2rem);
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms
+}
+
+.button:hover {
+    color: hsl(186, 100%, 60%);
+}
+
+.button svg {
+    height: 1.01rem;
+    width: 1.01rem
+}

@@ -1,0 +1,41 @@
+.wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.subText {
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgb(170, 166, 195);
+}
+
+.headText {
+  font-weight: 900;
+  color: rgb(255, 255, 255);
+}
+
+.subText {
+  /* font-size: 18px; */
+  font-size: 16px;
+}
+
+.headText {
+  /* font-size: 50px; */
+  font-size: 45px;
+}
+
+@media (max-width: 640px) {
+  .subText {
+    font-size: 13px;
+  }
+
+  .headText {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 450px) {
+  .headText {
+    font-size: 30px;
+  }
+}

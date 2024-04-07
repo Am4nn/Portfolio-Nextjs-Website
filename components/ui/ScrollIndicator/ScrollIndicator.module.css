@@ -1,0 +1,57 @@
+.scrollIndicator {
+  position: absolute;
+  bottom: 4rem;
+  border: 2px solid rgb(255 255 255 / 0.4);
+  border-radius: 20px;
+  width: 26px;
+  height: 38px;
+  transition-property: opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  opacity: 0;
+  color: transparent;
+}
+
+.scrollIndicator:hover {
+  color: transparent;
+}
+
+.scrollIndicator::before {
+  content: "";
+  height: 7px;
+  width: 2px;
+  background: rgb(255 255 255 / 0.4);
+  border-radius: 4px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-1px);
+  transition-property: opacity, transform;
+  animation: introScrollIndicatorAnimation 2s ease infinite;
+}
+
+.scrollIndicator[data-hidden="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scrollIndicator[data-hidden="false"] {
+  opacity: 1;
+}
+
+@keyframes introScrollIndicatorAnimation {
+  0% {
+    transform: translate3d(-1px, 0, 0);
+    opacity: 0;
+  }
+
+  20% {
+    transform: translate3d(-1px, 0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate3d(-1px, 8px, 0);
+    opacity: 0;
+  }
+}
