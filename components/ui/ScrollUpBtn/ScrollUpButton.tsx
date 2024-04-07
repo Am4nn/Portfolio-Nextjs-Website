@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './ScrollUpButton.module.css';
 
 const ScrollUpButton = ({ element }: { element?: HTMLElement }) => {
