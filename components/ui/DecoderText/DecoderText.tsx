@@ -23,6 +23,8 @@ const CharType = {
   Value: 'value',
 };
 
+const springConfig = { stiffness: 8, damping: 5 };
+
 function shuffle(content: string[], output: { type: string; value: string; }[], position: number) {
   return content.map((value, index) => {
     if (index < position) {
@@ -37,9 +39,6 @@ function shuffle(content: string[], output: { type: string; value: string; }[], 
     return { type: CharType.Glyph, value: output[index].value };
   });
 }
-
-// const springConfig = { stiffness: 20, damping: 20 };
-const springConfig = { stiffness: 8, damping: 5 };
 
 const DecoderText = memo(function MemoDecoderText(
   { text, start = true, startDelay = 0, eachCharClass, className, ...rest }:
