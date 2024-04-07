@@ -5,7 +5,7 @@ import styles from './ScrollUpButton.module.css';
 
 const ScrollUpButton = ({ element }: { element?: HTMLElement }) => {
 
-  const [atTop, setAtTop] = useState(true);
+  const [atTop, setAtTop] = useState<boolean>(true);
 
   const scrollHandler = () => {
     if (element) element.scrollTo(0, 0);
@@ -25,9 +25,8 @@ const ScrollUpButton = ({ element }: { element?: HTMLElement }) => {
     else window.addEventListener('scroll', toggleAtTop);
   }, [element]);
 
-
   return (
-    <button data-hidden={!atTop} onClick={scrollHandler} className={[!atTop ? styles.show : "", styles.button].join(" ")}>
+    <button aria-label='Scroll to the top' data-hidden={atTop} onClick={scrollHandler} className={[!atTop ? styles.show : "", styles.button].join(" ")}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
         <path
           fill="currentColor"
