@@ -3,7 +3,7 @@
 import { useTheme } from 'next-themes';
 import { useReducedMotion, useSpring, motion, cubicBezier } from 'framer-motion';
 import { useInViewport, useWindowSize } from '@/hooks';
-import { startTransition, useEffect, useRef, useState } from 'react';
+import { startTransition, useEffect, useRef } from 'react';
 import {
   AmbientLight,
   DirectionalLight,
