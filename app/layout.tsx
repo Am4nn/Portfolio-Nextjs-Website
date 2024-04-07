@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
+import localFont from 'next/font/local'
 import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
 import ThemeSwitch from "@/components/ui/ThemeSwitch/ThemeSwitch";
-import "./globals.css";
 import ScrollUpButton from "@/components/ui/ScrollUpButton/ScrollUpButton";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const gotham = localFont({ src: '../public/fonts/gotham-medium.woff2' })
+
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://next.amanarya.com/"),
@@ -42,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased overflow-x-hidden`}>
+      <body className={`${gotham.className} antialiased overflow-x-hidden`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
