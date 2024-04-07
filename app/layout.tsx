@@ -12,7 +12,7 @@ import ScrollUpButton from "@/components/ui/ScrollUpButton/ScrollUpButton";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://amanarya.com/"),
+  metadataBase: new URL("https://next.amanarya.com/"),
 
   title: {
     template: "%s | Portfolio",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Aman Arya | Portfolio",
     description: "Aman Arya's Portfolio website",
-    url: "https://amanarya.com/",
+    url: "https://next.amanarya.com/",
     siteName: "Aman Arya | Portfolio",
     images: "/og.png",
     type: "website",
