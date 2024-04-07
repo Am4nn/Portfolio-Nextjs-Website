@@ -1,7 +1,9 @@
+"use client"
+
 import React, { ReactNode, useEffect, useState } from 'react'
 import styles from './ScrollUpButton.module.css';
 
-const ScrollUpButton = ({ element }: { element: HTMLElement }) => {
+const ScrollUpButton = ({ element }: { element?: HTMLElement }) => {
 
   const [atTop, setAtTop] = useState(true);
 
