@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
 import ThemeSwitch from "@/components/ui/ThemeSwitch/ThemeSwitch";
@@ -56,6 +57,7 @@ export default function RootLayout({
         </ThemeProvider>
 
         <Analytics />
+        <SpeedInsights />
 
       </body>
     </html>
