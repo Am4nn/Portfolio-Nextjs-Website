@@ -5,7 +5,6 @@ import GridBackgroudLayout from "@/components/ui/GridBackgroudLayout/GridBackgro
 import { DisplacementSphere } from "@/components/ui/DisplacementSphere/DisplacementSphere";
 import MainComponent from "@/components/ui/MainComponent/MainComponent";
 import { SocialSideBar } from "@/components/ui/LeftSideBar/LeftSideBar";
-// import { TracingBeam } from "@/components/ui/TracingBeam/TracingBeam";
 
 export default function Home() {
   return (
