@@ -10,6 +10,8 @@ const ScrollUpButton = ({ element }: { element?: HTMLElement }) => {
   const scrollHandler = () => {
     if (element) element.scrollTo(0, 0);
     else window.scrollTo(0, 0);
+    // reset the hash in the URL
+    window.location.hash = '';
   }
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const ScrollUpButton = ({ element }: { element?: HTMLElement }) => {
 
 
   return (
-    <button onClick={scrollHandler} className={[!atTop ? styles.show : "", styles.button].join(" ")}>
+    <button data-hidden={!atTop} onClick={scrollHandler} className={[!atTop ? styles.show : "", styles.button].join(" ")}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
         <path
           fill="currentColor"
