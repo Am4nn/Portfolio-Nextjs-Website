@@ -23,7 +23,7 @@ export default function ThemeSwitch() {
 
   return (
     <Box sx={{
-      position: 'absolute',
+      position: 'fixed',
       zIndex: 1000,
       top: 5,
       right: 5
