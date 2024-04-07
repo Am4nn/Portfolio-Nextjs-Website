@@ -12,7 +12,7 @@ const Logo = () => {
   );
 }
 
-const LogoSvg = ({ color, width, height }) => (
+const LogoSvg = ({ color, width, height }: { color: string, width: number, height: number }) => (
   <svg width={width} height={height} xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 234.00 203.00">
     <path fill={color} d="
                 M 122.18 182.11
