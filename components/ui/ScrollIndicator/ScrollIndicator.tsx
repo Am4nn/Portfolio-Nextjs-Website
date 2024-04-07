@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import styles from './ScrollIndicator.module.css';
 
-const ScrollIndicator = ({ mountDelay, href }: { mountDelay: number, href: string }) => {
+const ScrollIndicator = ({ mountDelay = 0, href }: { mountDelay?: number, href: string }) => {
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState('true');
   const [scrollIndicatorIsMount, setScrollIndicatorIsMount] = useState(false);
 
