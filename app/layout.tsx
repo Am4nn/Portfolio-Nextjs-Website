@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
 import ThemeSwitch from "@/components/ui/ThemeSwitch/ThemeSwitch";
 import "./globals.css";
-import ScrollUpButton from "@/components/ui/ScrollUpBtn/ScrollUpButton";
+import ScrollUpButton from "@/components/ui/ScrollUpButton/ScrollUpButton";
 
 const inter = Inter({ subsets: ["latin"] });
 
