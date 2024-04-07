@@ -25,8 +25,8 @@ export default function ThemeSwitch() {
     <Box sx={{
       position: 'absolute',
       zIndex: 1000,
-      top: 0,
-      right: 0
+      top: 5,
+      right: 5
     }}>
       {!mounted ?
         // to handle server-side rendering and avoid content layout shift, not mounted -> server-side rendering
