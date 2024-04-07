@@ -42,7 +42,7 @@ export default function ThemeSwitch() {
           aria-label='loading-theme-switch-button'
         />
         :
-        <IconButton id='theme-switch-button' aria-label='theme-switch-button' title='theme-switch-button' sx={{ width: 50, height: 50, ml: 1 }} onClick={toggleTheme}>
+        <IconButton id='theme-switch-button' aria-label='theme-switch-button' title='Theme Switch Button' sx={{ width: 50, height: 50, ml: 1 }} onClick={toggleTheme}>
           {resolvedTheme === 'dark' ? <MoonIcon /> : <SunIcon />}
         </IconButton>
       }

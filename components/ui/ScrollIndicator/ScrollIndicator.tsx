@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
 import styles from './ScrollIndicator.module.css';
+import Link from 'next/link';
 
 const ScrollIndicator = ({ mountDelay = 0, href }: { mountDelay?: number, href: string }) => {
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState('true');
@@ -26,14 +27,12 @@ const ScrollIndicator = ({ mountDelay = 0, href }: { mountDelay?: number, href: 
   }, [mountDelay]);
 
   return (
-    <a
+    <Link
       className={styles.scrollIndicator}
       data-hidden={scrollIndicatorIsMount ? scrollIndicatorHidden : 'true'}
       href={href}
       aria-label="Scroll to next section"
-    >
-      Scroll Indicator
-    </a>
+    />
   )
 }
 
