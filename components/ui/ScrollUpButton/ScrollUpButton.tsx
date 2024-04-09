@@ -21,6 +21,9 @@ const ScrollUpButton = ({ element }: { element?: HTMLElement }) => {
       else if (scrolled <= 100) setAtTop(true)
     };
 
+    // for the first time when the component is mounted
+    toggleAtTop();
+
     if (element) element.addEventListener('scroll', toggleAtTop);
     else window.addEventListener('scroll', toggleAtTop);
   }, [element]);
