@@ -1,0 +1,37 @@
+.link {
+  display: inline-block;
+  position: relative;
+  color: #00e5ff;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.link:hover,
+.link:focus-visible {
+  color: #00e5ff;
+  outline: 0;
+}
+
+.link:hover > *,
+.link:focus-visible > * {
+  color: #00e5ff !important;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  position: relative;
+  bottom: 0.25em;
+  background-color: #00e5ff;
+  opacity: 0.5;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  width: 100%;
+}
