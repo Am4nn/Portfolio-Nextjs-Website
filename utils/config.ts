@@ -38,22 +38,10 @@ export const socialMediaDetails = [
 ];
 
 export const skills = [
-  {
-    name: "Languages",
-    items: ["C", "C++", "Java", "Python", "HTML/CSS", "Javascript", "Typescript"],
-  },
-  {
-    name: "Web Development",
-    items: ["React", "NextJs", "Node", "Redux", "Boot", "RestAPI", "ExpressJs", "SocketIO", "MUI"],
-  },
-  {
-    name: "Database",
-    items: ["MySQL", "MongoDB", "Redis"],
-  },
-  {
-    name: "Tools/Software/Others",
-    items: ["Git", "Github", "VSCode", "IntellijIdea", "Docker", "Postman", "OpenGL", "Other"],
-  },
+  "C", "C++", "Java", "Python", "HTML/CSS", "Javascript", "Typescript", "MySQL",
+  "MongoDB", "Redis", "Tailwind", "React", "NextJs", "Node", "Redux", "Boot", "RestAPI",
+  "ExpressJs", "SocketIO", "MUI", "Git", "Github", "VSCode", "IntellijIdea", "Docker",
+  "Postman", "OpenGL", "Framer", "Tableau", "Playwright", "Cucumber", "Legend"
 ];
 
 export const experiences = [
