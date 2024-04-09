@@ -1,6 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Quantico&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Ubuntu:wght@400;500&display=swap");
 
 [data-introanimate] {
   opacity: 0;
@@ -18,7 +16,6 @@
   white-space: nowrap;
   font-family: "Quantico", gotham, "gotham";
   text-transform: uppercase;
-  letter-spacing: 0.3em;
   color: #00e5ff;
   line-height: 1;
   letter-spacing: 0.4rem;
@@ -34,10 +31,6 @@
   -webkit-transition: all 0.5s ease-in;
   -o-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
-}
-
-.who_am_I {
-  font-family: Cinzel;
 }
 
 .has-first-color {
@@ -82,18 +75,12 @@
   color: #5cccc9;
 }
 
-.font-poppins {
-  font-family: "Poppins", sans-serif !important;
-}
-
 .intro_sec .font-2-4 {
   font-size: 2.4rem;
-  font-weight: 700;
 }
 
 .intro_sec h2 {
   font-size: 1.04064rem;
-  font-family: "Raleway", gotham;
   letter-spacing: 2.7px;
   margin-bottom: 3.5rem;
   color: rgba(245, 245, 245, 0.6);

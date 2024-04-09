@@ -10,7 +10,7 @@ export interface VisuallyHiddenProps {
   visible?: boolean;
 }
 
-const VisuallyHidden = forwardRef<HTMLButtonElement, VisuallyHiddenProps>((
+const VisuallyHidden = forwardRef<HTMLButtonElement, Readonly<VisuallyHiddenProps>>((
   { className = [], showOnFocus = false, as: Component = 'span', children, visible = false, ...rest },
   ref: React.ForwardedRef<HTMLButtonElement>
 ) => (

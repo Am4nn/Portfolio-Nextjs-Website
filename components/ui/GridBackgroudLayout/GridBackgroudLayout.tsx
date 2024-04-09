@@ -1,6 +1,8 @@
 import React from "react";
 
-const GridBackgroudLayout = ({ children }: { children?: React.ReactNode }) => {
+const GridBackgroudLayout = ({ children }: Readonly<{
+  children?: React.ReactNode;
+}>) => {
   return (
     <div className="w-full min-h-screen bg-background dark:bg-grid-white/[0.03] bg-grid-black/[0.03]">
       {/* Radial gradient for the container to give a faded look */}

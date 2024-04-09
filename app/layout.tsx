@@ -9,8 +9,9 @@ import QueryProvider from "@/components/providers/QueryProvider";
 import ThemeSwitch from "@/components/ui/ThemeSwitch/ThemeSwitch";
 import ScrollUpButton from "@/components/ui/ScrollUpButton/ScrollUpButton";
 import "./globals.css";
+import { cn } from "@/utils/cn";
 
-const gotham = localFont({ src: '../public/fonts/gotham-medium.woff2' })
+const gotham = localFont({ src: '../public/fonts/gotham-medium.woff2' });
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -45,7 +46,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${gotham.className} antialiased overflow-x-hidden`}>
+      <body className={cn(gotham.className, 'antialiased overflow-x-hidden')}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

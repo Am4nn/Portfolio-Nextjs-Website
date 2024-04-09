@@ -10,7 +10,9 @@ import styles from './LeftSideBar.module.css';
 const socialSideBarLoaderDelay = 0.3; // in seconds
 const socialSideBarMountDelay = 500 + 1000; // in milliseconds
 
-const LeftBottomSide = ({ children }: { children: React.ReactNode }) => (
+const LeftBottomSide = ({ children }: Readonly<{
+  children: React.ReactNode;
+}>) => (
   <motion.div className={[styles.StyledSideElement, styles.left].join(" ")}>
     {children}
   </motion.div>

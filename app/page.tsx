@@ -1,11 +1,11 @@
 "use client";
 import React, { Fragment } from "react";
-import Intro from "./components/Intro/Intro";
 import GridBackgroudLayout from "@/components/ui/GridBackgroudLayout/GridBackgroudLayout";
 import { DisplacementSphere } from "@/components/ui/DisplacementSphere/DisplacementSphere";
 import MainComponent from "@/components/ui/MainComponent/MainComponent";
 import { SocialSideBar } from "@/components/ui/LeftSideBar/LeftSideBar";
 import ScrollIndicator from "@/components/ui/ScrollIndicator/ScrollIndicator";
+import Intro from "./components/Intro/Intro";
 import About from "./components/About/About";
 
 export default function Home() {

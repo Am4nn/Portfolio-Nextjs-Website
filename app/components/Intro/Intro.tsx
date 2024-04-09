@@ -2,10 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { stagger, useAnimate } from 'framer-motion';
-import DecoderText from '@/components/ui/DecoderText/DecoderText'
+import { Raleway } from 'next/font/google';
+import DecoderText from '@/components/ui/DecoderText/DecoderText';
 import ScramblingText from '@/components/ui/ScramblingText/ScramblingText';
 import { introAnimatedText, myName, shortDescription } from "@/utils/config";
-import "./Intro.css"
+import "./Intro.css";
+
+const raleway = Raleway({ weight: "200", style: "normal", subsets: ["latin"] });
 
 const introLoaderDelay = 0.3; // in seconds
 const introMountDelay = 1000; // in milliseconds
@@ -44,19 +47,19 @@ const Intro = () => {
     <section id="home" className="section intro_sec flex items-center">
       <div ref={introRef} className="intro mx-auto">
 
-        <div data-introanimate style={{ paddingBottom: 15 }} className="hithere font-2-4">
+        <div data-introanimate className="pb-4 hithere font-bold font-2-4">
           Hi There !
         </div>
 
-        <h1 data-introanimate className='myname font-2-4'>
+        <h1 data-introanimate className="myname font-bold font-2-4">
           <DecoderText text={`I’m ${myName}`} eachCharClass="namechar" startDelay={1000 - 50 + 250} />
         </h1>
 
-        <div data-introanimate>
+        <div data-introanimate className={raleway.className}>
           <h2 style={{ '--h2-fade-in-delay': `${shortDescDelay}ms` } as React.CSSProperties}>{shortDescription}</h2>
         </div>
 
-        <div data-introanimate className="mytextcolorwhite fluidz-48 mb-5 font-2-4" style={{ fontWeight: 500 }}>
+        <div data-introanimate className="mytextcolorwhite font-medium fluidz-48 mb-5 font-2-4">
           <ScramblingText data={introAnimatedText} delay={1500} />
         </div>
 
