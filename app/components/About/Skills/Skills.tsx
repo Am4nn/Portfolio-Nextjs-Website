@@ -15,7 +15,7 @@ const Skills = () => (
 
 const SkillBubble = memo(({ name }: Readonly<{ name: string }>) => (
   <li key={name}>
-    <Image width={15} height={15} src={`/skills/` + (name.split(' ').at(0)) + `.svg`} alt={name} loading="lazy" />
+    <Image width={15} height={15} src={`/skills/` + (name.split(' ').at(0)) + `.svg`} alt={`${name} Icon`} loading="lazy" />
     <span>{name}</span>
   </li>
 ));
