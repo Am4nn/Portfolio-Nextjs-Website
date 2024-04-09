@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
-import localFont from 'next/font/local'
 import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -8,12 +6,9 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
 import ThemeSwitch from "@/components/ui/ThemeSwitch/ThemeSwitch";
 import ScrollUpButton from "@/components/ui/ScrollUpButton/ScrollUpButton";
-import "./globals.css";
 import { cn } from "@/utils/cn";
-
-const gotham = localFont({ src: '../public/fonts/gotham-medium.woff2' });
-
-// const inter = Inter({ subsets: ["latin"] });
+import { gotham } from "@/utils/fonts";
+import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://next.amanarya.com/"),

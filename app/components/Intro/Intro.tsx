@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { stagger, useAnimate } from 'framer-motion';
-import { Raleway } from 'next/font/google';
 import DecoderText from '@/components/ui/DecoderText/DecoderText';
 import ScramblingText from '@/components/ui/ScramblingText/ScramblingText';
 import { introAnimatedText, myName, shortDescription } from "@/utils/config";
 import "./Intro.css";
-
-const raleway = Raleway({ weight: "200", style: "normal", subsets: ["latin"] });
+import { gotham_medium, raleway } from '@/utils/fonts';
+import { cn } from '@/utils/cn';
 
 const introLoaderDelay = 0.3; // in seconds
 const introMountDelay = 1000; // in milliseconds
@@ -44,7 +43,7 @@ const Intro = () => {
   }, []);
 
   return (
-    <section id="home" className="section intro_sec flex items-center">
+    <section id="home" className={cn(gotham_medium.className, "section intro_sec flex items-center")}>
       <div ref={introRef} className="intro mx-auto">
 
         <div data-introanimate className="pb-4 hithere font-bold font-2-4">
