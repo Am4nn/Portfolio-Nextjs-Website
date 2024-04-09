@@ -155,4 +155,14 @@
   main > section:first-child {
     padding-top: unset !important;
   }
+
+  ::selection {
+    background-color: #00eeff;
+    color: #000000;
+  }
+
+  a::selection {
+    background-color: #f0d396;
+    color: #000000;
+  }
 }
