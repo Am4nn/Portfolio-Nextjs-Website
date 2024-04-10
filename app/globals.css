@@ -5,7 +5,12 @@
 @layer base {
   :root {
     --background: 0 0% 98%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 240 9.33% 29.41%;
+
+    --foreground-secondary: 40 100% 50%;
+
+    --foreground-left-style: 240 9.33% 29.41% / 60%;
+    --foreground-left-style-hover: 4 100% 50% / 60%;
 
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -38,6 +43,11 @@
   .dark {
     --background: 0 0% 7.8%;
     --foreground: 0 0% 98%;
+
+    --foreground-secondary: 186 100% 50%;
+
+    --foreground-left-style: 166 100% 90% / 80%;
+    --foreground-left-style-hover: 345 100% 85% / 80%;
 
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -156,12 +166,12 @@
   }
 
   ::selection {
-    background-color: #00eeff;
+    background-color: hsl(186 100% 50%);
     color: #000000;
   }
 
   a::selection {
-    background-color: #f0d396;
+    background-color: hsl(41 75% 76%);
     color: #000000;
   }
 }

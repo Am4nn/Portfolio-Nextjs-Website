@@ -87,12 +87,12 @@
   text-decoration-skip-ink: auto;
   position: relative;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
-  color: hsl(166, 100%, 90%);
+  color: hsl(var(--foreground-left-style));
 }
 
 .StyledSocialList li a:hover,
 .StyledSocialList li a:focus {
-  color: hsl(345, 100%, 85%);
+  color: hsl(var(--foreground-left-style-hover));
 }
 
 .bar {

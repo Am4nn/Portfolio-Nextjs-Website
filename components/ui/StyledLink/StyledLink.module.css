@@ -1,7 +1,7 @@
 .link {
   display: inline-block;
   position: relative;
-  color: #00e5ff;
+  color: hsl(var(--foreground-secondary));
   text-decoration: none;
   text-decoration-skip-ink: auto;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -9,13 +9,13 @@
 
 .link:hover,
 .link:focus-visible {
-  color: #00e5ff;
+  color: hsl(var(--foreground-secondary));
   outline: 0;
 }
 
 .link:hover > *,
 .link:focus-visible > * {
-  color: #00e5ff !important;
+  color: hsl(var(--foreground-secondary));
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
@@ -26,7 +26,7 @@
   height: 2px;
   position: relative;
   bottom: 0.25em;
-  background-color: #00e5ff;
+  background-color: hsl(var(--foreground-secondary));
   opacity: 0.5;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }

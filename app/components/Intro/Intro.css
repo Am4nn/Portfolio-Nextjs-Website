@@ -13,7 +13,7 @@
   white-space: nowrap;
   font-family: "Quantico", var(--font-gotham-medium);
   text-transform: uppercase;
-  color: #00e5ff;
+  color: hsl(var(--foreground-secondary));
   line-height: 1;
   letter-spacing: 0.4rem;
 }
