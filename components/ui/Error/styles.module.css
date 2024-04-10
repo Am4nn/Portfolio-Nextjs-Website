@@ -1,10 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
-
 .section {
   margin: 0;
   box-sizing: border-box;
   background-color: #313942;
-  font-family: "Montserrat", sans-serif;
   height: 100vh;
   display: flex;
   text-align: center;
@@ -45,6 +42,7 @@
 .h2 {
   color: #e7ebf2;
   margin-bottom: 0.4em;
+  font-size: calc(1.1rem + .8vw);
 }
 
 .h2 > span {
