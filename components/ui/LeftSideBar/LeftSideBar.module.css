@@ -85,7 +85,6 @@
   display: inline-block;
   text-decoration: none;
   text-decoration-skip-ink: auto;
-  color: inherit;
   position: relative;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   color: hsl(166, 100%, 90%);
@@ -101,6 +100,5 @@
   width: 1px;
   height: 90px;
   margin: 0 auto;
-  background-color: hsl(184, 100%, 85%);
-  background-color: rgb(255 255 255 / 0.4);
+  background-color: hsl(var(--foreground) / 40%);
 }

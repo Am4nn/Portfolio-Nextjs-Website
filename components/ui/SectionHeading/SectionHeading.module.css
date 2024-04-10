@@ -6,13 +6,13 @@
   opacity: 0.8;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: rgb(170, 166, 195);
+  color: hsl(248, 19%, 71%);
   margin-bottom: 1rem;
 }
 
 .headText {
   font-weight: 900;
-  color: white;
+  color: hsl(var(--foreground));
   margin-bottom: 0.5rem;
   line-height: 1.2;
 }

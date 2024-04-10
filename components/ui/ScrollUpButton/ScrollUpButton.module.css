@@ -17,8 +17,8 @@
   border-radius: 9999px;
   border-style: none;
   padding: 0px;
-  color: rgb(108 121 131/ 1);
-  background-color: rgb(0 0 0 /0.5);
+  color: hsl(206, 10%, 47%);
+  background-color: hsla(0, 0%, 0%, 0.5);
   outline: 2px solid transparent;
   outline-offset: 2px;
   opacity: 0;

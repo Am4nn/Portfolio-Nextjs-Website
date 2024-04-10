@@ -1,7 +1,7 @@
 .scramblingText_text {
-    color: #FAFAFA;
+  color: hsl(var(--foreground));
 }
 
 .scramblingText_dud {
-    color: #757575d0;
+  color: hsla(var(--foreground) / 38%);
 }

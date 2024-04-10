@@ -1,7 +1,7 @@
 .scrollIndicator {
   position: absolute;
   bottom: 4rem;
-  border: 2px solid rgb(255 255 255 / 0.4);
+  border: 2px solid hsl(var(--foreground) / 40%);
   border-radius: 20px;
   width: 26px;
   height: 38px;
@@ -20,7 +20,7 @@
   content: "";
   height: 7px;
   width: 2px;
-  background: rgb(255 255 255 / 0.4);
+  background: hsl(var(--foreground) / 40%);
   border-radius: 4px;
   position: absolute;
   top: 6px;
