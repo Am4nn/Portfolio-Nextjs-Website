@@ -19,7 +19,7 @@ ul.skills_wrapper {
 }
 
 .skills_wrapper span {
-  color: #cad6d9;
+  color: hsl(var(--foreground) / 80%);
   font-weight: 400;
   font-size: 13px;
   margin-left: 8px;
