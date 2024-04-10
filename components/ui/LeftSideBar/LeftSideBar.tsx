@@ -1,22 +1,16 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import { useMediaQuery } from '@mui/material';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useMediaQuery } from '@mui/material';
 import { Icon } from '@/components/ui/Icons';
 import { socialMediaDetails } from '@/utils/config';
+import { cn } from '@/utils/cn';
 import styles from './LeftSideBar.module.css';
 
 const socialSideBarLoaderDelay = 0.3; // in seconds
 const socialSideBarMountDelay = 500 + 1000; // in milliseconds
-
-const LeftBottomSide = ({ children }: Readonly<{
-  children: React.ReactNode;
-}>) => (
-  <motion.div className={[styles.StyledSideElement, styles.left].join(" ")}>
-    {children}
-  </motion.div>
-);
 
 export function SocialSideBar() {
   const [isMounted, setIsMounted] = useState(false);
@@ -30,7 +24,7 @@ export function SocialSideBar() {
 
   if (isMobile) return null;
   return (
-    <LeftBottomSide>
+    <motion.div className={cn(styles.StyledSideElement, styles.left)}>
       <AnimatePresence>
         {isMounted && (
           <motion.ul
@@ -47,9 +41,9 @@ export function SocialSideBar() {
                 transition={{ duration: socialSideBarLoaderDelay, delay: i * 0.1 }}
               >
                 {url ?
-                  <a href={url} aria-label={name} target="_blank" rel="noreferrer">
+                  <Link href={url} aria-label={name} target="_blank" rel="noreferrer">
                     <Icon name={name} />
-                  </a> :
+                  </Link> :
                   <div className={styles.bar} />
                 }
               </motion.li>
@@ -57,6 +51,6 @@ export function SocialSideBar() {
           </motion.ul>
         )}
       </AnimatePresence>
-    </LeftBottomSide>
+    </motion.div>
   )
 };
