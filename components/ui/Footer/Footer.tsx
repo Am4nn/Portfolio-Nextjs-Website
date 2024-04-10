@@ -5,7 +5,7 @@ import StyledLink from '@/components/ui/StyledLink/StyledLink';
 const Footer = () => (
   <footer className={styles.footer}>
     <div>Copyright © {new Date().getFullYear()} All rights reserved</div>
-    <div>Made with ❤️ by <StyledLink href="https://www.linkedin.com/in/aman-arya-79a52121b" target="_blank" rel="noopener noreferrer">
+    <div>Made with ❤️ by <StyledLink external href="https://www.linkedin.com/in/aman-arya-79a52121b">
       Aman Arya
     </StyledLink></div>
   </footer>

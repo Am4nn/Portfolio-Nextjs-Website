@@ -18,14 +18,14 @@ const About = () => (
         <div>
           <p>
             I’m Aman Arya, currently I live in Bengaluru India,
-            working as a Junior Engineer at <StyledLink href='https://www.goldmansachs.com/'>Goldman Sachs</StyledLink>.
+            working as a Junior Engineer at <StyledLink external href='https://www.goldmansachs.com/'>Goldman Sachs</StyledLink>.
           </p>
 
           <p>
-            I’ve been flexible with technologies, enjoying the journey from creating games like <StyledLink href='https://github.com/Am4nn/Super-Mario-SFML'>Super Mario</StyledLink> in C++ with SFML,
-            to exploring Java with its <StyledLink href='https://github.com/Am4nn/Auction-App-Using-RMI'>RMI</StyledLink>, <StyledLink href='https://github.com/Am4nn/MultiClient-Java-Server'>Socket</StyledLink> and <StyledLink href='https://github.com/Am4nn/Draw-Graphs'>Swing</StyledLink> libraries.
+            I’ve been flexible with technologies, enjoying the journey from creating games like <StyledLink external href='https://github.com/Am4nn/Super-Mario-SFML'>Super Mario</StyledLink> in C++ with SFML,
+            to exploring Java with its <StyledLink external href='https://github.com/Am4nn/Auction-App-Using-RMI'>RMI</StyledLink>, <StyledLink external href='https://github.com/Am4nn/MultiClient-Java-Server'>Socket</StyledLink> and <StyledLink external href='https://github.com/Am4nn/Draw-Graphs'>Swing</StyledLink> libraries.
             Transitioning to web development, I’ve delved into various libraries and frameworks such as Next.js, TypeScript, Framer Motion, Socket.io and Redux.
-            I also explored <StyledLink href='https://github.com/Am4nn/Online-Judge-Project'>Docker, AWS, DNS management</StyledLink>, and other technologies during this transition.
+            I also explored <StyledLink external href='https://github.com/Am4nn/Online-Judge-Project'>Docker, AWS, DNS management</StyledLink>, and other technologies during this transition.
           </p>
 
           <p>
