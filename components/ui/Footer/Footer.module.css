@@ -1,8 +1,3 @@
-@font-face {
-  font-family: gotham-light;
-  src: url("/fonts/gotham-book.woff2");
-}
-
 .footer {
   display: flex;
   align-items: center;
@@ -10,24 +5,8 @@
   width: 100%;
   flex-wrap: wrap;
   position: relative;
-  /* padding: 64px 24px 32px 24px; */
-  padding: 0px 24px 32px 24px;
+  padding: 64px 24px 32px 24px;
   font-size: 0.875rem;
-  font-family: gotham-light;
-}
-
-.nameLink {
-  text-decoration: none;
-  border-bottom: 1px solid;
-  padding-bottom: 2px;
-  border-bottom-color: hsl(166, 100%, 90%);
-  color: hsl(166, 100%, 90%);
-  transition: color 150ms ease-in-out, border-bottom-color 150ms ease-in-out;
-}
-
-.nameLink:hover {
-  border-bottom-color: hsl(345, 100%, 85%);
-  color: hsl(345, 100%, 85%);
 }
 
 @media (max-width: 640px) {
