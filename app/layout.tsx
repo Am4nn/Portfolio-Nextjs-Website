@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Toaster } from "react-hot-toast";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -33,6 +33,15 @@ export const metadata: Metadata = {
   },
   keywords: ["Aman Arya", "portfolio", "Aman Arya Portfolio", "Aman Arya | Portfolio", "aman", "aman portfolio"],
 };
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'hsl(0 0% 98%)' },
+    { media: '(prefers-color-scheme: dark)', color: 'hsl(0 0% 7.8%)' },
+  ],
+}
 
 export default function RootLayout({
   children,
