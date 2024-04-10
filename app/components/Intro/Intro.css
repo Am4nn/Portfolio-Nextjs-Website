@@ -1,14 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Quantico&display=swap");
 
+/* Initial state for framer-motion animation */
 [data-introanimate] {
   opacity: 0;
   transform: scale(0.6);
   filter: blur(20px);
   translate: 0px 30px;
-}
-
-.mytextcolorwhite {
-  color: white;
 }
 
 .myname {
@@ -21,67 +18,28 @@
   letter-spacing: 0.4rem;
 }
 
-.has-first-color {
-  color: #0d0d0d;
-}
-
-.btn-portfolio {
-  background: #0d0d0d;
-  border-radius: 0;
-}
-
-.btn-portfolio a {
-  color: #000;
-  text-decoration: none;
-}
-
-.btn-about a {
-  color: #fff;
-  text-decoration: none;
-}
-
-@media (max-width: 991.98px) {
-  .intro_sec .intro {
-    max-width: 700px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
-.intro_sec .intro .feature .wrap-icon {
-  background: 0 0 !important;
-  width: auto;
-  height: auto;
-  margin-bottom: 0;
-}
-
-.intro_sec .intro .feature .wrap-icon svg {
-  color: #5cccc9;
-}
-
 .intro_sec .font-2-4 {
   font-size: 2.4rem;
 }
 
 .intro_sec h2 {
+  opacity: 1;
   font-size: 1.04064rem;
   letter-spacing: 2.7px;
   margin-bottom: 3.5rem;
-  color: rgba(245, 245, 245, 0.6);
+  color: hsla(var(--foreground) / 60%);
   text-transform: uppercase;
-  opacity: 0;
   font-weight: 700;
-  animation: fade-in-animation var(--h2-fade-in-delay) ease-in-out 300ms
-    forwards;
 }
 
-@keyframes fade-in-animation {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.intro_sec .intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0 auto;
+  text-align: start;
 }
 
 /* h1:h2 = 0.4336 */
@@ -105,228 +63,18 @@
   }
 }
 
-/* -------------------------------------------------- */
-
-.btn {
-  background-color: transparent;
-  border-radius: 0.375rem;
-  color: #212529;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  padding: 0.375rem 0.75rem;
-  text-align: center;
-  text-decoration: none;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  -webkit-user-select: none;
-  user-select: none;
-  vertical-align: middle;
-}
-
-/* -------------------------------------------------- */
-
-.ac_btn {
-  padding: 4px 19px;
-  color: white;
-  position: relative;
-  border: white 2px solid;
-  overflow: hidden;
-  transition: all 0.6s cubic-bezier(0.55, 0, 0.1, 1);
-  border-radius: 0;
-  margin-right: 20px;
-  /* cursor: none; */
-}
-
-.ac_btn a {
-  text-decoration: none;
-}
-
-.ac_btn:hover {
-  box-shadow: 8px 8px 0px white, -8px -8px 0px white;
-}
-
-.ac_btn:hover .one {
-  opacity: 1;
-  transform: translate3d(0px, 0px, 0px);
-}
-
-.ac_btn:hover .two {
-  transform: translate3d(0px, 0px, 0px);
-}
-
-.ac_btn:hover .three {
-  transform: translate3d(0px, 0px, 0px);
-}
-
-.ac_btn .ring {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: transparent;
-  top: 0;
-  left: 0;
-  transform: translate3d(0px, 90px, 0px);
-}
-
-.ac_btn .one {
-  background-color: #000;
-  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
-  /* z-index: -4; */
-}
-
-.ac_btn .two {
-  background-color: #0d0d0d;
-  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
-  /* z-index: -3; */
-}
-
-.ac_btn .three {
-  background-color: #fff;
-  transition: all 0.7s cubic-bezier(0.55, 0, 0.1, 1);
-  /* z-index: -3; */
-}
-
-#button_p {
-  background: #fff;
-  color: #0d0d0d;
-}
-
-#button_p:hover {
-  border-color: black;
-}
-
-#button_h:hover {
-  color: #0d0d0d;
-  border-color: black;
-}
-
-.btn_text {
-  position: relative;
-  z-index: 3;
-}
-
-.intro_sec .intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  margin: 0 auto;
-  text-align: start;
-}
-
-.p {
-  /* font-family: 'Rajdhani', var(--font-gotham); */
-  font-weight: 200;
-  max-width: 700px;
-  letter-spacing: 0.2rem;
-  margin-bottom: 2rem;
-}
-
-/* .mypic {
-    position: relative;
-    display: block;
-    margin-bottom: 3.5rem;
-    height: calc(5vw + 5vh + 5vmin);
-    width: calc(5vw + 5vh + 5vmin);
-    border-radius: 500px;
-    background: url('/src/assets/Images/mypic.jpg') center center no-repeat;
-    background-size: cover;
-    box-shadow: 0 3px 12px rgb(0 0 0 / 23%), 0 3px 12px rgb(0 0 0 / 16%);
-    transition: box-shadow .3s ease-in-out;
-    animation-name: bounceIn;
-    animation-iteration-count: 1s;
-    animation-duration: .9s;
-    animation-delay: 1s;
-    animation-timing-function: ease;
-    animation-fill-mode: both;
-    -ms-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-.mypic.pulse:after {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border: 2px solid rgba(250, 250, 250, 0.1);
-    border-radius: 50%;
-    animation: pulse 3s ease-in-out 0s infinite;
-} */
-
-@keyframes pulse {
-  0% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-
-  50% {
-    -webkit-transform: scale(1.3);
-    transform: scale(1.3);
-  }
-
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
+@media (max-width: 991.98px) {
+  .intro_sec .intro {
+    max-width: 700px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
-@keyframes bounceIn {
-  0%,
-  20%,
-  40%,
-  60%,
-  80%,
-  100% {
-    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-
-  0% {
-    opacity: 0;
-    -webkit-transform: scale3d(0.3, 0.3, 0.3);
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-
-  20% {
-    -webkit-transform: scale3d(1.1, 1.1, 1.1);
-    transform: scale3d(1.1, 1.1, 1.1);
-  }
-
-  40% {
-    -webkit-transform: scale3d(0.9, 0.9, 0.9);
-    transform: scale3d(0.9, 0.9, 0.9);
-  }
-
-  60% {
-    opacity: 1;
-    -webkit-transform: scale3d(1.03, 1.03, 1.03);
-    transform: scale3d(1.03, 1.03, 1.03);
-  }
-
-  80% {
-    -webkit-transform: scale3d(0.97, 0.97, 0.97);
-    transform: scale3d(0.97, 0.97, 0.97);
-  }
-
-  100% {
-    opacity: 1;
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
-
-/* -------------------------------------------------- */
-
+/* For Decoder Text */
 .hithere,
 .namechar0,
 .namechar1,
 .namechar2 {
-  color: white;
+  color: hsl(var(--foreground));
 }

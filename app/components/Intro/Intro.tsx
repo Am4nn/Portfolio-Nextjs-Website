@@ -5,13 +5,12 @@ import { stagger, useAnimate } from 'framer-motion';
 import DecoderText from '@/components/ui/DecoderText/DecoderText';
 import ScramblingText from '@/components/ui/ScramblingText/ScramblingText';
 import { introAnimatedText, myName, shortDescription } from "@/utils/config";
-import "./Intro.css";
 import { gotham_medium, raleway } from '@/utils/fonts';
 import { cn } from '@/utils/cn';
+import "./Intro.css";
 
 const introLoaderDelay = 0.3; // in seconds
 const introMountDelay = 1000; // in milliseconds
-const shortDescDelay = 6000; // in milliseconds
 
 // todo: may be lets not use this
 function useIntroAnimation(isMounted: boolean) {
@@ -56,10 +55,10 @@ const Intro = () => {
         </h1>
 
         <div data-introanimate className={raleway.className}>
-          <h2 style={{ '--h2-fade-in-delay': `${shortDescDelay}ms` } as React.CSSProperties}>{shortDescription}</h2>
+          <h2>{shortDescription}</h2>
         </div>
 
-        <div data-introanimate className="mytextcolorwhite font-medium fluidz-48 mb-5 font-2-4">
+        <div data-introanimate className="font-medium fluidz-48 mb-5 font-2-4">
           <ScramblingText data={introAnimatedText} delay={1500} />
         </div>
 
