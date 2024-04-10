@@ -4,13 +4,8 @@
   display: none;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&display=swap");
-
 .glyph {
-  /* font-family: "ヒラギノ角ゴ Pro W3, Hiragino Kaku Gothic Pro, Hiragino Sans, Osaka, メイリオ, Meiryo, Segoe UI, sans-serif"; */
-  /* font-weight: 100; */
-  /* font-style: italic; */
-  font-family: "Tiro Devanagari Hindi", serif;
+  font-family: var(--font-tiro-devanagari-hindi);
   opacity: 0.4;
   line-height: 0;
   letter-spacing: 1px;

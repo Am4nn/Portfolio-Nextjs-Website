@@ -1,8 +1,9 @@
 import { useReducedMotion, useSpring } from 'framer-motion';
 import { memo, useEffect, useRef } from 'react';
-import { delay } from '@/utils/delay';
 import styles from './DecoderText.module.css';
 import VisuallyHidden from '@/components/ui/VisuallyHidden/VisuallyHidden';
+import { tiro_Devanagari_Hindi } from '@/utils/fonts';
+import { delay } from '@/utils/delay';
 import { cn } from '@/utils/cn';
 
 const hindi = [
@@ -91,7 +92,7 @@ const DecoderText = memo(function MemoDecoderText(
   }, [decoderSpring, reduceMotion, start, startDelay, eachCharClass, text]);
 
   return (
-    <span className={cn(styles.text, className)} {...rest}>
+    <span className={cn(styles.text, tiro_Devanagari_Hindi.variable, className)} {...rest}>
       <VisuallyHidden>{text}</VisuallyHidden>
       <span aria-hidden className={styles.content} ref={container} />
     </span>
