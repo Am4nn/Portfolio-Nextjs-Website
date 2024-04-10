@@ -158,6 +158,9 @@ export const DisplacementSphere = (props: any) => {
       rotationY.set(position.x / 2);
     }, 100);
 
+    // Trigger the mouse move event to set the initial position
+    onMouseMove({ clientX: 1, clientY: 1 });
+
     if (!isMobile && !reduceMotion && isInViewport) {
       window.addEventListener('mousemove', onMouseMove);
     }
