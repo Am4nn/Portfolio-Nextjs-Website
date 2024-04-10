@@ -21,18 +21,6 @@
   letter-spacing: 0.4rem;
 }
 
-.section {
-  text-align: center;
-  height: auto;
-  min-height: 100vh;
-  flex: 1 0 auto;
-  position: relative;
-  width: 100%;
-  -webkit-transition: all 0.5s ease-in;
-  -o-transition: all 0.5s ease-in;
-  transition: all 0.5s ease-in;
-}
-
 .has-first-color {
   color: #0d0d0d;
 }
@@ -50,10 +38,6 @@
 .btn-about a {
   color: #fff;
   text-decoration: none;
-}
-
-.intro_sec {
-  min-height: 100vh;
 }
 
 @media (max-width: 991.98px) {

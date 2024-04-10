@@ -141,7 +141,6 @@
 
   main > section {
     position: relative;
-    min-height: 100vh;
     padding-top: 4rem !important;
     width: 100%;
   }

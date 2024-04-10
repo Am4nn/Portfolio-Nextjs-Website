@@ -13,6 +13,7 @@ const introLoaderDelay = 0.3; // in seconds
 const introMountDelay = 1000; // in milliseconds
 const shortDescDelay = 6000; // in milliseconds
 
+// todo: may be lets not use this
 function useIntroAnimation(isMounted: boolean) {
   const [scope, animate] = useAnimate();
   const staggerIntroItems = stagger(0.1, { startDelay: 0 });
@@ -43,7 +44,7 @@ const Intro = () => {
   }, []);
 
   return (
-    <section id="home" className={cn(gotham_medium.className, "section intro_sec flex items-center")}>
+    <section id="home" className={cn(gotham_medium.className, "section intro_sec h-screen flex items-center")}>
       <div ref={introRef} className="intro mx-auto">
 
         <div data-introanimate className="pb-4 hithere font-bold font-2-4">

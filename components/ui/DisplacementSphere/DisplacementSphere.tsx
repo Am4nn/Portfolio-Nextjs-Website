@@ -216,7 +216,7 @@ export const DisplacementSphere = (props: any) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ ease: cubicBezier(0.4, 0.0, 0.2, 1), duration: 3 }}
-      className="bg-background absolute inset-0 w-dvw"
+      className="bg-background absolute inset-0 w-screen h-screen"
       aria-hidden
       ref={canvasRef}
       {...props}
