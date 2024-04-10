@@ -14,7 +14,7 @@
 .myname {
   overflow: hidden;
   white-space: nowrap;
-  font-family: "Quantico", gotham, "gotham";
+  font-family: "Quantico", var(--font-gotham-medium);
   text-transform: uppercase;
   color: #00e5ff;
   line-height: 1;
@@ -219,7 +219,7 @@
 }
 
 .p {
-  /* font-family: 'Rajdhani', gotham; */
+  /* font-family: 'Rajdhani', var(--font-gotham); */
   font-weight: 200;
   max-width: 700px;
   letter-spacing: 0.2rem;

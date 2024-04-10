@@ -41,7 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(gotham.className, 'antialiased overflow-x-hidden')}>
+      <body className={cn(gotham.className, gotham.variable, 'antialiased overflow-x-hidden')}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

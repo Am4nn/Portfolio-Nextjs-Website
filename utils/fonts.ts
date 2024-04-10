@@ -2,11 +2,13 @@ import localFont from 'next/font/local'
 import { Inter, Montserrat, Raleway, Quantico, Tiro_Devanagari_Hindi } from "next/font/google";
 
 export const gotham = localFont({
-  src: '../public/fonts/gotham-book.woff2'
+  src: '../public/fonts/gotham-book.woff2',
+  variable: '--font-gotham'
 });
 
 export const gotham_medium = localFont({
-  src: '../public/fonts/gotham-medium.woff2'
+  src: '../public/fonts/gotham-medium.woff2',
+  variable: '--font-gotham-medium'
 });
 
 export const inter = Inter({
