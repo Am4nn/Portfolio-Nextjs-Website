@@ -3,65 +3,92 @@ import Image from 'next/image';
 import StyledLink from '@/components/ui/StyledLink/StyledLink';
 import Skills from './Skills/Skills';
 import styles from './About.module.css';
+import { useState } from 'react';
+import { Button } from '@mui/material';
+import { gotham } from '@/utils/fonts';
+import {
+  ExpandMore as ExpandMoreIcon,
+  ExpandLess as ExpandLessIcon
+} from '@mui/icons-material';
 
-const About = () => (
-  <section id="about">
+const About = () => {
 
-    <SectionHeading
-      subText="Introduction"
-      headText="About Me"
-    />
+  const [expanded, setExpanded] = useState<boolean>(false);
+  const toggleExpand = () => setExpanded(prev => !prev);
 
-    <div className={styles.inner}>
+  return (
+    <section id="about">
 
-      <div className={styles.about_text}>
-        <div>
-          <p>
-            I’m Aman Arya, currently I live in Bengaluru India,
-            working as a Junior Engineer at <StyledLink external href='https://www.goldmansachs.com/'>Goldman Sachs</StyledLink>.
-          </p>
+      <SectionHeading
+        subText="Introduction"
+        headText="About Me"
+      />
 
-          <p>
-            I’ve been flexible with technologies, enjoying the journey from creating games like <StyledLink external href='https://github.com/Am4nn/Super-Mario-SFML'>Super Mario</StyledLink> in C++ with SFML,
-            to exploring Java with its <StyledLink external href='https://github.com/Am4nn/Auction-App-Using-RMI'>RMI</StyledLink>, <StyledLink external href='https://github.com/Am4nn/MultiClient-Java-Server'>Socket</StyledLink> and <StyledLink external href='https://github.com/Am4nn/Draw-Graphs'>Swing</StyledLink> libraries.
-            Transitioning to web development, I’ve delved into various libraries and frameworks such as Next.js, TypeScript, Framer Motion, Socket.io and Redux.
-            I also explored <StyledLink external href='https://github.com/Am4nn/Online-Judge-Project'>Docker, AWS, DNS management</StyledLink>, and other technologies during this transition.
-          </p>
+      <div className={styles.inner}>
 
-          <p>
-            During my time at Goldman Sachs, I focused on Tableau, data modeling, and am currently involved in
-            Playwright test automation, Cucumber, and contributing to API services with Spring Boot and RxJava.
-          </p>
+        <div className={styles.about_text}>
+          <div>
+            <p>
+              I’m Aman Arya, currently I live in Bengaluru India,
+              working as a Junior Engineer at <StyledLink external href='https://www.goldmansachs.com/'>Goldman Sachs</StyledLink>.
+            </p>
 
-          <p>
-            In my free time, I enjoy watching web series, playing video games, and experimenting with new technologies.
-            I’m always eager to learn about new projects, so <StyledLink href='#contact'>please feel free to reach out to me</StyledLink>.
-          </p>
+            <p>
+              I’ve been flexible with technologies, enjoying the journey from creating games like <StyledLink external href='https://github.com/Am4nn/Super-Mario-SFML'>Super Mario</StyledLink> in C++ with SFML,
+              to exploring Java with its <StyledLink external href='https://github.com/Am4nn/Auction-App-Using-RMI'>RMI</StyledLink>, <StyledLink external href='https://github.com/Am4nn/MultiClient-Java-Server'>Socket</StyledLink> and <StyledLink external href='https://github.com/Am4nn/Draw-Graphs'>Swing</StyledLink> libraries.
+              Transitioning to web development, I’ve delved into various libraries and frameworks such as Next.js, TypeScript, Framer Motion, Socket.io and Redux.
+              I also explored <StyledLink external href='https://github.com/Am4nn/Online-Judge-Project'>Docker, AWS, DNS management</StyledLink>, and other technologies during this transition.
+            </p>
 
-          <p>Here are a few technologies I’ve worked on:</p>
+            <p>
+              During my time at Goldman Sachs, I focused on Tableau, data modeling, and am currently involved in
+              Playwright test automation, Cucumber, and contributing to API services with Spring Boot and RxJava.
+            </p>
 
-          <Skills />
+            <p>
+              In my free time, I enjoy watching web series, playing video games, and experimenting with new technologies.
+              I’m always eager to learn about new projects, so <StyledLink href='#contact'>please feel free to reach out to me</StyledLink>.
+            </p>
 
+            <p>Here are a few technologies I’ve worked on:</p>
+
+            <Skills expanded={expanded} />
+
+            <p>
+              <Button
+                size='small'
+                sx={{ textTransform: 'capitalize', color: '#fff', borderColor: '#fff', '&:hover': { borderColor: '#fff' } }}
+                className={gotham.className}
+                variant="outlined"
+                aria-label={expanded ? 'show less' : 'show more'}
+                onClick={toggleExpand}
+                endIcon={expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              >
+                {expanded ? 'show less' : 'show more'}
+              </Button>
+            </p>
+
+          </div>
+
+        </div>
+
+        <div className={styles.image_div_wrapper}>
+          <div className={styles.wrapper}>
+            <Image
+              className={styles.img}
+              src="/images/my-pic.png"
+              width={728}
+              height={1125}
+              quality={95}
+              alt="Headshot"
+            />
+          </div>
         </div>
 
       </div>
 
-      <div className={styles.image_div_wrapper}>
-        <div className={styles.wrapper}>
-          <Image
-            className={styles.img}
-            src="/images/my-pic.png"
-            width={728}
-            height={1125}
-            quality={95}
-            alt="Headshot"
-          />
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-);
+    </section>
+  );
+}
 
 export default About;
