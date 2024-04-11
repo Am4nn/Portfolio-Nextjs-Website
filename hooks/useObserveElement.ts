@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react"
 
-export function useObserveHeight() {
+export function useObserveElement() {
   const scope = useRef<HTMLElement | any | null>(null);
-  const [height, setHeight] = useState<number | 'auto'>('auto');
+  const [rect, setRect] = useState<DOMRectReadOnly>();
 
   useEffect(() => {
     if (scope.current) {
       const resizeObserver = new ResizeObserver((entries) => {
         // We only have one entry, so we can use entries[0].
-        const observedHeight = entries[0].contentRect.height
-        setHeight(observedHeight)
-      })
+        const observedRect = entries[0].contentRect;
+        setRect(observedRect);
+      });
 
       resizeObserver.observe(scope.current)
 
@@ -21,5 +21,5 @@ export function useObserveHeight() {
     }
   }, []);
 
-  return { scope, height };
+  return { scope, rect };
 }
