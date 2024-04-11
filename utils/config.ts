@@ -41,7 +41,7 @@ export const skills = [
   "C", "C++", "Java", "Python", "HTML/CSS", "Javascript", "Typescript", "MySQL",
   "MongoDB", "Redis", "Tailwind", "React", "NextJs", "Node", "Redux", "Boot", "RestAPI",
   "ExpressJs", "SocketIO", "MUI", "Git", "Github", "VSCode", "IntellijIdea", "Docker",
-  "Postman", "OpenGL", "Framer", "Tableau", "Playwright", "Cucumber", "Legend"
+  "Postman", "OpenGL", "Framer", "Tableau", "Playwright", "Cucumber", "Legend", "Vercel"
 ];
 
 export const experiences = [
