@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
 import styles from './VisuallyHidden.module.css';
 import { cn } from '@/utils/cn';
+import { ReadOnlyChildren } from '@/utils/types';
 
-export interface VisuallyHiddenProps {
+export interface VisuallyHiddenProps extends ReadOnlyChildren {
   className?: string[];
   showOnFocus?: boolean;
   as?: React.ElementType;
-  children?: React.ReactNode;
   visible?: boolean;
 }
 

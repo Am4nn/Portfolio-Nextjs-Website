@@ -3,7 +3,6 @@ import styles from './StyledLink.module.css';
 
 interface StyledLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
-  children: React.ReactNode;
   external?: boolean;
 }
 

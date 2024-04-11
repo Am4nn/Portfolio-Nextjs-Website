@@ -1,12 +1,11 @@
 "use client";
+import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode, useState } from "react";
+import { ReadOnlyChildren } from "@/utils/types";
 
 // Create a client
 
-export default function QueryProvider({ children }: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function QueryProvider({ children }: ReadOnlyChildren) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (

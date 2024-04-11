@@ -1,14 +1,16 @@
-import React from 'react'
+import { ReadOnlyChildren } from '@/utils/types'
+import { cn } from '@/utils/cn';
 import classes from './styles.module.css'
 
-const SlidingButton = ({ children, text }: Readonly<{
-  children?: React.ReactNode,
-  text: string
-}>) => {
+interface SlidingButtonType extends ReadOnlyChildren {
+  text: Readonly<string>
+};
+
+const SlidingButton = ({ children, text }: SlidingButtonType) => {
   return (
-    <button className={classes.learnMore + ' ' + classes.button}>
+    <button className={cn(classes.learnMore, classes.button)}>
       <span className={classes.circle} aria-hidden="true">
-        <span className={classes.icon + ' ' + classes.arrow}>
+        <span className={cn(classes.icon, classes.arrow)}>
           {children}
         </span>
       </span>

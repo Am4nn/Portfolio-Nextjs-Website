@@ -1,8 +1,6 @@
-import React from "react";
+import { ReadOnlyChildren } from "@/utils/types";
 
-const MainComponent = ({ children }: Readonly<{
-  children?: React.ReactNode;
-}>) => (
+const MainComponent = ({ children }: ReadOnlyChildren) => (
   <main id='portfolio-main' className="flex flex-col items-center">
     {children}
   </main>

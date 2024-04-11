@@ -8,6 +8,7 @@ import ThemeSwitch from "@/components/ui/ThemeSwitch/ThemeSwitch";
 import ScrollUpButton from "@/components/ui/ScrollUpButton/ScrollUpButton";
 import { cn } from "@/utils/cn";
 import { gotham } from "@/utils/fonts";
+import { ReadOnlyChildren } from "@/utils/types";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -43,11 +44,7 @@ export const viewport: Viewport = {
   ],
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: ReadOnlyChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(gotham.className, gotham.variable, 'antialiased overflow-x-hidden')}>
