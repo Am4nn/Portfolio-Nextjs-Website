@@ -9,7 +9,13 @@ const Skills = ({ expanded }: { expanded: boolean }) => (
   <ul className={cn(styles.skills_wrapper, montserrat.className)}>
     {(expanded ? skills : skills.slice(0, 12)).map((item) => (
       <li key={item}>
-        <Image width={15} height={15} src={`/skills/` + (item.split(' ').at(0)) + `.svg`} alt={`${item} Icon`} loading="lazy" />
+        <Image
+          width={15}
+          height={15}
+          src={`/skills/` + (item.split(' ').at(0)) + `.svg`}
+          alt={`${item} Icon`}
+          loading="lazy"
+        />
         <span>{item}</span>
       </li>
     ))}
