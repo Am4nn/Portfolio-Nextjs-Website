@@ -4,3 +4,4 @@
 - Manifest doesn't have a maskable icon
 - Add Toast: best suited for desktop view, reach out if you find any bugs or mistakes, preffered dark mode
 - Add a Portfolio CLI
+- Add `special thanks to` in footer
