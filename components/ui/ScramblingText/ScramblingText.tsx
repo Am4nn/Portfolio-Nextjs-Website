@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
+import VisuallyHidden from '@/components/wrapper/VisuallyHidden/VisuallyHidden';
 import './ScramblingText.css';
-import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 
 export default function ScramblingText({ data, delay = 1000, ...rest }: { data: string[], delay?: number }) {
 

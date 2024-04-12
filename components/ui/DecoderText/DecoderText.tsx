@@ -1,7 +1,7 @@
 import { useReducedMotion, useSpring } from 'framer-motion';
 import { memo, useEffect, useRef } from 'react';
 import styles from './DecoderText.module.css';
-import VisuallyHidden from '@/components/ui/VisuallyHidden/VisuallyHidden';
+import VisuallyHidden from '@/components/wrapper/VisuallyHidden/VisuallyHidden';
 import { tiro_Devanagari_Hindi } from '@/utils/fonts';
 import { delay } from '@/utils/delay';
 import { cn } from '@/utils/cn';
