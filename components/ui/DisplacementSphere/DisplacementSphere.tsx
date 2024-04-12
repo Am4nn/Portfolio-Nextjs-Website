@@ -36,7 +36,7 @@ const springConfig = {
 const backgroundColor = { r: 18, g: 18, b: 18 };
 const parallaxFactor = 0.45;
 
-export const DisplacementSphere = (props: any) => {
+export default function DisplacementSphere(props: any) {
   const { theme } = useTheme();
   const start = useRef(Date.now());
   const canvasRef = useRef<HTMLCanvasElement | undefined>();
@@ -158,9 +158,6 @@ export const DisplacementSphere = (props: any) => {
       rotationY.set(position.x / 2);
     }, 100);
 
-    // Trigger the mouse move event to set the initial position
-    onMouseMove({ clientX: 1, clientY: 1 });
-
     if (!isMobile && !reduceMotion && isInViewport) {
       window.addEventListener('mousemove', onMouseMove);
     }
@@ -219,7 +216,7 @@ export const DisplacementSphere = (props: any) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ ease: cubicBezier(0.4, 0.0, 0.2, 1), duration: 3 }}
-      className="bg-background absolute inset-0 w-screen h-screen"
+      className="bg-background absolute inset-0 w-screen"
       aria-hidden
       ref={canvasRef}
       {...props}
