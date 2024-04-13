@@ -24,7 +24,7 @@ export function SocialSideBar() {
 
   if (isMobile) return null;
   return (
-    <motion.div className={cn(styles.StyledSideElement, styles.left)}>
+    <div className={cn(styles.StyledSideElement, styles.left)}>
       <AnimatePresence>
         {isMounted && (
           <motion.ul
@@ -51,6 +51,6 @@ export function SocialSideBar() {
           </motion.ul>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   )
 };
