@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { useTheme } from 'next-themes';
 import { Box, IconButton } from '@mui/material';
-// import { DarkMode as MoonIcon, LightMode as SunIcon } from '@mui/icons-material';
 import { MoonIcon, SunIcon } from './Icons';
 import Image from 'next/image';
 
@@ -22,12 +21,7 @@ export default function ThemeSwitch() {
   };
 
   return (
-    <Box sx={{
-      position: 'fixed',
-      zIndex: 1000,
-      top: 5,
-      right: 5
-    }}>
+    <Box className='fixed z-50 top-1 right-1'>
       {!mounted ?
         // to handle server-side rendering and avoid content layout shift, not mounted -> server-side rendering
         <Image
@@ -42,7 +36,7 @@ export default function ThemeSwitch() {
           aria-label='loading-theme-switch-button'
         />
         :
-        <IconButton id='theme-switch-button' aria-label='theme-switch-button' title='Theme Switch Button' sx={{ width: 50, height: 50, ml: 1 }} onClick={toggleTheme}>
+        <IconButton id='theme-switch-button' aria-label='theme-switch-button' title='Theme Switch Button' sx={{ width: 50, height: 50 }} onClick={toggleTheme}>
           {resolvedTheme === 'dark' ? <MoonIcon /> : <SunIcon />}
         </IconButton>
       }
