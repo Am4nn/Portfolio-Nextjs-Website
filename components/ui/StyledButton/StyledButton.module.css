@@ -1,0 +1,56 @@
+.button {
+  background-color: color-mix(
+    in lab,
+    hsl(var(--foreground-secondary)) 20%,
+    transparent
+  );
+  padding-left: 10px;
+  padding-right: 10px;
+  text-transform: capitalize;
+  display: inline-block;
+  position: relative;
+  color: hsl(var(--foreground-secondary));
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.button:hover,
+.button:focus-visible,
+.button:hover *,
+.button:focus-visible * {
+  outline: 0;
+  color: hsl(var(--background));
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0px;
+  width: 0px;
+  height: 100%;
+  background-color: hsl(var(--foreground-secondary));
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.button:hover::after,
+.button:focus-visible::after {
+  width: 100%;
+}
+
+.button svg {
+  width: 18px;
+  width: 18px;
+  vertical-align: middle;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
