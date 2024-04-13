@@ -6,3 +6,4 @@
 - Add a Portfolio CLI
 - Add `special thanks to` in footer
 - Add Resume
+- Change SunIcon and MoonIcon to have sharp design
