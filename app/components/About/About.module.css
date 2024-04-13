@@ -26,9 +26,13 @@
   }
 }
 
-.about p {
+.about_text > * {
   margin: 0px 0px 15px;
 }
+.about_text:last-child {
+  margin: 0px;
+}
+
 
 .image_wrapper {
   display: block;
