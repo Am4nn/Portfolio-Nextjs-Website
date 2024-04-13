@@ -50,7 +50,7 @@ export default function RootLayout({ children }: ReadOnlyChildren) {
       <body className={cn(gotham.className, gotham.variable, 'antialiased overflow-x-hidden')}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
           enableSystem
         >
           <ThemeSwitch />
