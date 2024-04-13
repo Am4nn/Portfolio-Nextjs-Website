@@ -27,7 +27,7 @@ export default function ScramblingText({ data, delay = 1000, ...rest }: { data: 
 
   return (
     <div {...rest}>
-      <VisuallyHidden>{data.join(' ')}</VisuallyHidden>
+      <VisuallyHidden>{data.join(', ')}</VisuallyHidden>
       <div className="scramblingText_text" ref={elementRef} />
     </div>
   );
