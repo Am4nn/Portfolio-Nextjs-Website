@@ -1,13 +1,14 @@
 import React from 'react';
 import {
-  IconEmail,
-  IconExternal,
-  IconGitHub,
-  IconInstagram,
-  IconLinkedin,
+  IconArrowDown, IconArrowUp, IconEmail, IconExternal,
+  IconGitHub, IconInstagram, IconLinkedin,
 } from './index';
 
-const Icon = ({ name }: { name?: string }) => {
+interface IconsProps {
+  name: 'GitHub' | 'Linkedin' | 'Instagram' | 'Email' | 'External' | 'ArrowUp' | 'ArrowDown' | string | undefined;
+}
+
+const Icon = ({ name }: IconsProps) => {
   switch (name) {
     case 'GitHub':
       return <IconGitHub />;
@@ -19,6 +20,10 @@ const Icon = ({ name }: { name?: string }) => {
       return <IconEmail />;
     case 'External':
       return <IconExternal />;
+    case 'ArrowUp':
+      return <IconArrowUp />;
+    case 'ArrowDown':
+      return <IconArrowDown />;
     default:
       return <IconExternal />;
   }
