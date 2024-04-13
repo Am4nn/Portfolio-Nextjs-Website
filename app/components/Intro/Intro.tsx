@@ -12,7 +12,6 @@ import "./Intro.css";
 const introLoaderDelay = 0.3; // in seconds
 const introMountDelay = 1000; // in milliseconds
 
-// todo: may be lets not use this
 function useIntroAnimation(isMounted: boolean) {
   const [scope, animate] = useAnimate();
   const staggerIntroItems = stagger(0.1, { startDelay: 0 });
