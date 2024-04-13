@@ -6,20 +6,12 @@ interface StyledLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> 
   external?: boolean;
 }
 
-const StyledLink = ({ href, external, children, ...rest }: StyledLinkProps) => {
-  if (external) {
-    return (
-      <Link target="_blank" rel="noopener noreferrer" className={styles.link} href={href} {...rest}>
-        {children}
-      </Link>
-    );
-  } else {
-    return (
-      <Link className={styles.link} href={href} {...rest}>
-        {children}
-      </Link>
-    );
-  }
-}
+export default function StyledLink({ href, external, children, ...rest }: StyledLinkProps) {
+  const linkProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
-export default StyledLink;
+  return (
+    <Link className={styles.link} {...linkProps} href={href} {...rest}>
+      {children}
+    </Link>
+  );
+}
