@@ -16,7 +16,7 @@ export const introAnimatedText = [
   "Gamer"
 ];
 export const myName = "Aman Arya";
-export const shortDescription = "MERN and Full Stack Developer";
+export const shortDescription = "JUNIOR SOFTWARE ENGINEER";
 
 export const socialMediaDetails = [
   {

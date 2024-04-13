@@ -25,7 +25,7 @@
 .intro_sec h2 {
   opacity: 1;
   font-size: 1.04064rem;
-  letter-spacing: 2.7px;
+  letter-spacing: 5.35px;
   margin-bottom: 3.5rem;
   color: hsla(var(--foreground) / 60%);
   text-transform: uppercase;
@@ -42,7 +42,6 @@
   text-align: start;
 }
 
-/* h1:h2 = 0.4336 */
 @media (max-width: 696px) {
   .intro_sec .font-2-4 {
     font-size: 1.7rem;
@@ -50,6 +49,7 @@
 
   .intro_sec h2 {
     font-size: 0.73712rem;
+    letter-spacing: 4.74px;
   }
 }
 
@@ -60,6 +60,7 @@
 
   .intro_sec h2 {
     font-size: 0.60704rem;
+    letter-spacing: 4.55px;
   }
 }
 
