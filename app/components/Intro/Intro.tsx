@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { stagger, useAnimate } from 'framer-motion';
 import DecoderText from '@/components/ui/DecoderText/DecoderText';
 import ScramblingText from '@/components/ui/ScramblingText/ScramblingText';
@@ -9,37 +9,27 @@ import { gotham_medium, raleway } from '@/utils/fonts';
 import { cn } from '@/utils/cn';
 import "./Intro.css";
 
-const introLoaderDelay = 0.3; // in seconds
-const introMountDelay = 1000; // in milliseconds
+const introMountDelay = 1; // in seconds
+const decoderTextStartDelay = 1000 + 100; // in milliseconds
 
-function useIntroAnimation(isMounted: boolean) {
+function useIntroAnimation() {
   const [scope, animate] = useAnimate();
-  const staggerIntroItems = stagger(0.1, { startDelay: 0 });
+  const staggerIntroItems = stagger(0.1, { startDelay: introMountDelay });
 
   useEffect(() => {
     animate(
       "[data-introanimate]",
-      isMounted
-        ? { opacity: 1, translate: '0px 0px', scale: 1, filter: "blur(0px)" }
-        : { opacity: 0, translate: '0px 30px', scale: 0.6, filter: "blur(20px)" },
-      {
-        duration: introLoaderDelay,
-        delay: isMounted ? staggerIntroItems : 0,
-      }
+      { opacity: 1, translate: '0px 0px', scale: 1, filter: "blur(0px)" },
+      { duration: 0.3, delay: staggerIntroItems }
     );
-  }, [isMounted, animate, staggerIntroItems]);
+
+  }, [animate, staggerIntroItems]);
 
   return scope;
 }
 
-const Intro = () => {
-  const [isMounted, setIsMounted] = useState(false);
-  const introRef = useIntroAnimation(isMounted);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setIsMounted(true), introMountDelay);
-    return () => clearTimeout(timeout);
-  }, []);
+export default function Intro() {
+  const introRef = useIntroAnimation();
 
   return (
     <section id="home" className={cn(gotham_medium.className, gotham_medium.variable, "section intro_sec h-screen flex items-center")}>
@@ -50,7 +40,7 @@ const Intro = () => {
         </div>
 
         <h1 data-introanimate className="myname font-bold font-2-4">
-          <DecoderText text={`I’m ${myName}`} eachCharClass="namechar" startDelay={1000 - 50 + 250} />
+          <DecoderText text={`I’m ${myName}`} eachCharClass="namechar" startDelay={decoderTextStartDelay} />
         </h1>
 
         <div data-introanimate className={raleway.className}>
@@ -65,5 +55,3 @@ const Intro = () => {
     </section>
   )
 }
-
-export default Intro;
