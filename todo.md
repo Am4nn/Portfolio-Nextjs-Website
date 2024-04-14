@@ -7,3 +7,5 @@
 - Add `special thanks to` in footer
 - Add Resume
 - Change SunIcon and MoonIcon to have sharp design
+- Add Logo, ThemeSwitch, LeftSideBar in Header Component
+- Remove bars from LeftSideBar and reduce the gap between icons
