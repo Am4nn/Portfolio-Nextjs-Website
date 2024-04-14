@@ -17,12 +17,6 @@
   }
 }
 
-@media (max-width: 767.5px) {
-  .StyledSideElement {
-    display: none;
-  }
-}
-
 .StyledSocialList {
   display: flex;
   flex-direction: column;
