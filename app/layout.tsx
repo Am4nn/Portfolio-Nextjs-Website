@@ -48,11 +48,8 @@ export default function RootLayout({ children }: ReadOnlyChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(gotham.className, gotham.variable, 'antialiased overflow-x-hidden')}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-        >
+
+        <ThemeProvider>
           <ThemeSwitch />
           <ScrollUpButton />
 
