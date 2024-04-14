@@ -9,8 +9,8 @@ import { SocialSideBar } from "@/components/ui/LeftSideBar/LeftSideBar";
 import ScrollIndicator from "@/components/ui/ScrollIndicator/ScrollIndicator";
 import DisplacementSphere from "@/components/ui/DisplacementSphere/DisplacementSphere";
 import Footer from "@/components/ui/Footer/Footer";
-import Intro from "./components/Intro/Intro";
-import About from "./components/About/About";
+import Intro from "./sections/Intro/Intro";
+import About from "./sections/About/About";
 
 // Only render the DisplacementSphere component on the client side
 // const DisplacementSphere = dynamic(() => import("@/components/ui/DisplacementSphere/DisplacementSphere"), { ssr: false });
