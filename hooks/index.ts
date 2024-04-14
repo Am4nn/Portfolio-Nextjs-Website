@@ -1,3 +1,4 @@
+export * from './useDelayedMount';
 export * from './useFps';
 export * from './useInViewport';
 export * from './useIsClient';
