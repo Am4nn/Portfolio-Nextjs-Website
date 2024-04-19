@@ -32,7 +32,7 @@ export default function Intro() {
   const introRef = useIntroAnimation();
 
   return (
-    <section id="home" className={cn(gotham_medium.className, gotham_medium.variable, "section intro_sec h-screen flex items-center")}>
+    <section id="intro" className={cn(gotham_medium.className, gotham_medium.variable, "section intro_sec h-screen flex items-center")}>
       <div ref={introRef} className="intro mx-auto">
 
         <div data-introanimate className="pb-4 hithere font-bold font-2-4">
