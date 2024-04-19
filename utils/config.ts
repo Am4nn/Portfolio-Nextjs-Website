@@ -1,9 +1,9 @@
 export const hashRoutes = [
-  ["Home", "/home/#home"],
-  ["About", "/home/#about"],
-  ["Experience", "/home/#experience"],
-  ["Projects", "/home/#projects"],
-  ["Contact", "/home/#contact"],
+  ["Home", "/#intro"],
+  ["About", "/#about"],
+  ["Experience", "/#experience"],
+  ["Projects", "/#projects"],
+  ["Contact", "/#contact"],
   ["Resume", "/resume.pdf"]
 ];
 
@@ -27,10 +27,10 @@ export const socialMediaDetails = [
     name: 'Linkedin',
     url: 'https://www.linkedin.com/in/aman-arya-79a52121b',
   },
-  {
-    name: 'Instagram',
-    url: 'https://www.instagram.com/am4n_arya',
-  },
+  // {
+  //   name: 'Instagram',
+  //   url: 'https://www.instagram.com/am4n_arya',
+  // },
   {
     name: 'Email',
     url: 'mailto:125aryaaman@gmail.com',
