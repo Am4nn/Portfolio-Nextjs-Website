@@ -1,0 +1,36 @@
+.StyledSocialList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.StyledSocialList li a:hover,
+.StyledSocialList li a:focus {
+  transform: translateY(-3px);
+}
+
+.StyledSocialList li a svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  vertical-align: middle;
+}
+
+.StyledSocialList li a {
+  display: inline-block;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 6px;
+  transform: translateY(0px);
+  color: hsl(var(--foreground) / 55%);
+}
+
+.StyledSocialList li a:hover,
+.StyledSocialList li a:focus {
+  color: hsl(var(--foreground-left-style-hover));
+}
