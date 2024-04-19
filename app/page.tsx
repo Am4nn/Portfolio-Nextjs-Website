@@ -5,7 +5,6 @@ import GridBackgroudLayout from "@/components/wrapper/GridBackgroudLayout/GridBa
 import MainComponent from "@/components/wrapper/MainComponent/MainComponent";
 import ErrorBoundary from "@/components/wrapper/ErrorBoundary/ErrorBoundary";
 import WebGLWrapper from "@/components/wrapper/WebGLWrapper/WebGLWrapper";
-import { SocialSideBar } from "@/components/ui/LeftSideBar/LeftSideBar";
 import ScrollIndicator from "@/components/ui/ScrollIndicator/ScrollIndicator";
 import DisplacementSphere from "@/components/ui/DisplacementSphere/DisplacementSphere";
 import Footer from "@/components/ui/Footer/Footer";
@@ -23,7 +22,6 @@ export default function Home() {
           <DisplacementSphere />
         </WebGLWrapper>
       </ErrorBoundary>
-      <SocialSideBar />
       <GridBackgroudLayout>
         <MainComponent>
           <Intro />

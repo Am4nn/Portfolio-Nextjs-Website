@@ -4,8 +4,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import QueryProvider from "@/components/providers/QueryProvider";
-import ThemeSwitch from "@/components/ui/ThemeSwitch/ThemeSwitch";
-import ScrollUpButton from "@/components/ui/ScrollUpButton/ScrollUpButton";
+import Header from "@/components/ui/Header/Header";
 import { cn } from "@/utils/cn";
 import { gotham } from "@/utils/fonts";
 import { ReadOnlyChildren } from "@/utils/types";
@@ -50,8 +49,8 @@ export default function RootLayout({ children }: ReadOnlyChildren) {
       <body className={cn(gotham.className, gotham.variable, 'antialiased overflow-x-hidden')}>
 
         <ThemeProvider>
-          <ThemeSwitch />
-          <ScrollUpButton />
+
+          <Header />
 
           <QueryProvider>
             {children}
