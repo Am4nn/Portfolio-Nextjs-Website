@@ -5,12 +5,11 @@ import { useTheme } from 'next-themes';
 import { Box, IconButton } from '@mui/material';
 import { MoonIcon, SunIcon } from './Icons';
 import Image from 'next/image';
+import { useDelayedMount } from '@/hooks';
 
 export default function ThemeSwitch() {
-  const [mounted, setMounted] = React.useState(false)
-  const { setTheme, resolvedTheme } = useTheme()
-
-  React.useEffect(() => setMounted(true), [])
+  const mounted = useDelayedMount(500);
+  const { setTheme, resolvedTheme } = useTheme();
 
   // checked -> dark mode
   // unchecked -> light mode
