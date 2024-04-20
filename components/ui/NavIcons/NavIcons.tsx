@@ -4,10 +4,11 @@ import React from 'react'
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useMediaQuery } from '@mui/material';
+import VisuallyHidden from '@/components/wrapper/VisuallyHidden/VisuallyHidden';
 import { Icon } from '@/components/ui/Icons';
-import { socialMediaDetails } from '@/utils/config';
-import { cn } from '@/utils/cn';
 import { useDelayedMount } from '@/hooks';
+import { cn } from '@/utils/cn';
+import { socialMediaDetails } from '@/utils/config';
 import styles from './NavIcons.module.css';
 
 // in milliseconds
@@ -27,30 +28,39 @@ export default function SocialNavIcons() {
 
   return (
     <AnimatePresence>
-      {(!isMobile && isMounted) ? <NavIcons /> : null}
+      {(!isMobile && isMounted) ? <NavIcons /> : <HiddenNavIcons />}
     </AnimatePresence>
   );
 }
 
 const NavIcons = () => (
-  <div className={cn(styles.StyledSideElement)}>
-    <ul className={styles.StyledSocialList}>
+  <ul className={styles.StyledSocialList}>
+    {socialMediaDetails && socialMediaDetails.map(({ url, name }, index) => (
+      <motion.li
+        key={index}
+        variants={fadeInAnimationVariants}
+        initial="initial"
+        animate="animate"
+        custom={index}
+      >
+        <Link href={url} aria-label={name} target="_blank" rel="noreferrer">
+          <Icon name={name} />
+        </Link>
+      </motion.li>
+    ))}
+  </ul>
+);
+
+const HiddenNavIcons = () => (
+  <VisuallyHidden>
+    <ul>
       {socialMediaDetails && socialMediaDetails.map(({ url, name }, index) => (
-        <motion.li
-          key={index}
-          variants={fadeInAnimationVariants}
-          initial="initial"
-          animate="animate"
-          custom={index}
-        >
-          {url ?
-            <Link href={url} aria-label={name} target="_blank" rel="noreferrer">
-              <Icon name={name} />
-            </Link> :
-            <div className={styles.bar} />
-          }
-        </motion.li>
+        <li key={index}>
+          <Link href={url} aria-label={name} target="_blank" rel="noreferrer">
+            {name}
+          </Link>
+        </li>
       ))}
     </ul>
-  </div>
-)
+  </VisuallyHidden>
+);
