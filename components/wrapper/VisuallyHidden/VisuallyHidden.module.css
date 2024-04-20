@@ -2,8 +2,10 @@
   position: absolute;
 }
 
-.visually-hidden[data-hidden='true'],
-.visually-hidden[data-show-on-focus='true']:not(:focus) {
+.visually-hidden[data-hidden="true"],
+.visually-hidden[data-show-on-focus="true"]:not(:focus),
+.visually-hidden[data-hidden="true"] *,
+.visually-hidden[data-show-on-focus="true"]:not(:focus) * {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;

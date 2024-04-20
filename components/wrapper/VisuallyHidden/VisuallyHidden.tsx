@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
-import styles from './VisuallyHidden.module.css';
 import { cn } from '@/utils/cn';
 import { ReadOnlyChildren } from '@/utils/types';
+import styles from './VisuallyHidden.module.css';
 
 export interface VisuallyHiddenProps extends ReadOnlyChildren {
   className?: string[];
