@@ -18,6 +18,8 @@ export const introAnimatedText = [
 export const myName = "Aman Arya";
 export const shortDescription = "JUNIOR SOFTWARE ENGINEER";
 
+export const longDescription = "Junior Engineer at Goldman Sachs with a passion for technology. Experienced in Java, Game Development, and now focused on Web Development with Next.js, TypeScript, and Framer Motion. Enthusiastic about learning and exploring new technologies. Check out my portfolio for more!";
+
 export const socialMediaDetails = [
   {
     name: 'GitHub',
