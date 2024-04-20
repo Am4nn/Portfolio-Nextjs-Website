@@ -1,10 +1,18 @@
 import { useReducedMotion, useSpring } from 'framer-motion';
-import { memo, useEffect, useRef } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import styles from './DecoderText.module.css';
 import VisuallyHidden from '@/components/wrapper/VisuallyHidden/VisuallyHidden';
 import { tiro_Devanagari_Hindi } from '@/utils/fonts';
 import { delay } from '@/utils/delay';
 import { cn } from '@/utils/cn';
+
+export interface DecoderTextProps extends React.HTMLAttributes<HTMLSpanElement> {
+  text: string;
+  start?: boolean;
+  startDelay?: number;
+  eachCharClass: string;
+  className?: string;
+}
 
 const hindi = [
   'क', 'ख', 'ग', 'घ',
@@ -42,31 +50,18 @@ function shuffle(content: string[], output: { type: string; value: string; }[], 
 }
 
 const DecoderText = memo(function MemoDecoderText(
-  { text, start = true, startDelay = 0, eachCharClass, className, ...rest }:
-    { text: string, start?: boolean, startDelay?: number, eachCharClass: string, className?: string }
+  { text, start = true, startDelay = 0, eachCharClass, className, ...rest }: DecoderTextProps
 ) {
-  const output = useRef([{ type: CharType.Glyph, value: '' }]);
-  const container = useRef<HTMLInputElement>(null);
   const reduceMotion = useReducedMotion();
   const decoderSpring = useSpring(0, springConfig);
 
+  const [output, setOutput] = useState([{ type: CharType.Glyph, value: '' }]);
+
   useEffect(() => {
     const content = text.split('');
-    let animation;
-
-    const renderOutput = () => {
-      const characterMap = output.current.map((item, id) => {
-        return `<span class="${styles[item.type]} ${eachCharClass + id}">${item.value}</span>`;
-      });
-
-      if (container && container.current) {
-        container.current.innerHTML = characterMap.join('');
-      }
-    };
 
     const unsubscribeSpring = decoderSpring.on('change', value => {
-      output.current = shuffle(content, output.current, value);
-      renderOutput();
+      setOutput(prev => shuffle(content, prev, value));
     });
 
     const startSpring = async () => {
@@ -74,16 +69,15 @@ const DecoderText = memo(function MemoDecoderText(
       decoderSpring.set(content.length);
     };
 
-    if (start && !animation && !reduceMotion) {
+    if (start && !reduceMotion) {
       startSpring();
     }
 
     if (reduceMotion) {
-      output.current = content.map((value, index) => ({
+      setOutput(content.map((value, index) => ({
         type: CharType.Value,
         value: content[index],
-      }));
-      renderOutput();
+      })));
     }
 
     return () => {
@@ -94,7 +88,11 @@ const DecoderText = memo(function MemoDecoderText(
   return (
     <span className={cn(styles.text, tiro_Devanagari_Hindi.variable, className)} {...rest}>
       <VisuallyHidden>{text}</VisuallyHidden>
-      <span aria-hidden className={styles.content} ref={container} />
+      <span aria-hidden className={styles.content}>
+        {output.map((item, id) => (
+          <span key={id} className={cn(styles[item.type], eachCharClass + id)}>{item.value}</span>
+        ))}
+      </span>
     </span>
   );
 });
