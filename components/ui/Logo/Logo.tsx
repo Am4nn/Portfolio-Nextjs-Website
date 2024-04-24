@@ -12,7 +12,7 @@ interface LogoProps {
 }
 
 const Logo = ({ width = 40, height = 40, transitionDuration = 0.3, startDelay = 0.5 }: LogoProps) => (
-  <Link href='#intro'>
+  <Link aria-label='Aman Arya | Portfolio' href='#intro'>
     <motion.svg
       className="text-foreground hover:text-foreground_secondary transition-colors duration-300"
       width={width}
