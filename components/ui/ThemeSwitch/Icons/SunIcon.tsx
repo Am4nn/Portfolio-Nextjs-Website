@@ -26,7 +26,6 @@ export const SunIcon = () => {
       whileTap={whileTap}
       // Centers the rotation anchor point vertically & horizontally
       style={{ originX: "50%", originY: "50%" }}
-      color='hsl(240 9.33% 29.41%)'
     >
       <motion.circle
         cx="11.9998"
@@ -71,4 +70,4 @@ export const SunIcon = () => {
       </motion.g>
     </motion.svg>
   );
-};
+}

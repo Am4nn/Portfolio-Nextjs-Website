@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { useTheme } from 'next-themes';
-import { Box, IconButton } from '@mui/material';
 import { MoonIcon, SunIcon } from './Icons';
 import Image from 'next/image';
 import { useDelayedMount } from '@/hooks';
+import styles from './ThemeSwitch.module.css';
 
 export default function ThemeSwitch() {
   const mounted = useDelayedMount(500);
@@ -20,7 +20,7 @@ export default function ThemeSwitch() {
   };
 
   return (
-    <Box className='fixed z-50 top-1 right-1'>
+    <div className='fixed z-50 top-1 right-1'>
       {!mounted ?
         // to handle server-side rendering and avoid content layout shift, not mounted -> server-side rendering
         <Image
@@ -35,10 +35,15 @@ export default function ThemeSwitch() {
           aria-label='loading-theme-switch-button'
         />
         :
-        <IconButton id='theme-switch-button' aria-label='theme-switch-button' title='Theme Switch Button' sx={{ width: 50, height: 50 }} onClick={toggleTheme}>
+        <button
+          title='Theme Switch Button'
+          aria-label='theme-switch-button'
+          className={styles.themeSwitchButton}
+          onClick={toggleTheme}
+        >
           {resolvedTheme === 'dark' ? <MoonIcon /> : <SunIcon />}
-        </IconButton>
+        </button>
       }
-    </Box>
+    </div>
   );
 }
