@@ -3,11 +3,10 @@
 import React from 'react'
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery } from '@/hooks';
 import VisuallyHidden from '@/components/wrapper/VisuallyHidden/VisuallyHidden';
 import { Icon } from '@/components/ui/Icons';
 import { useDelayedMount } from '@/hooks';
-import { cn } from '@/utils/cn';
 import { socialMediaDetails } from '@/utils/config';
 import styles from './NavIcons.module.css';
 

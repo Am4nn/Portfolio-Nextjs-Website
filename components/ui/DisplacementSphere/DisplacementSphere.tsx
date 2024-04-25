@@ -22,7 +22,7 @@ import {
 import { media } from '@/utils/style';
 import { throttle } from '@/utils/throttle';
 import { cleanRenderer, cleanScene, removeLights } from '@/utils/three';
-import { useMediaQuery } from '@mui/material';
+import { useMediaQuery } from '@/hooks';
 
 import fragmentShader from './displacementSphereFragment.glsl';
 import vertexShader from './displacementSphereVertex.glsl';
