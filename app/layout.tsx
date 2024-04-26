@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     },
     {
       "url": "https://www.amanarya.com/maskable_icon.png",
-      "sizes": "512x512",
+      "sizes": "1024x1024",
       "type": "image/png"
     }
   ],
