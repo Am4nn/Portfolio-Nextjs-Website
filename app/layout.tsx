@@ -10,6 +10,7 @@ import { gotham } from "@/utils/fonts";
 import { longDescription } from "@/utils/config";
 import { ReadOnlyChildren } from "@/utils/types";
 import "./globals.css";
+import UIHelpers from "@/components/ui/UIHelpers/UIHelpers";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.amanarya.com/"),
@@ -92,6 +93,8 @@ export default function RootLayout({ children }: ReadOnlyChildren) {
           <QueryProvider>
             {children}
           </QueryProvider>
+
+          <UIHelpers />
 
           <Toaster position="top-right" reverseOrder={false} />
         </ThemeProvider>
