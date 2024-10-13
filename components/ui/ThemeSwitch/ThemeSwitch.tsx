@@ -20,7 +20,7 @@ export default function ThemeSwitch() {
   };
 
   return (
-    <div className='fixed z-50 top-1 right-1'>
+    <div>
       {!mounted ?
         // to handle server-side rendering and avoid content layout shift, not mounted -> server-side rendering
         <Image
