@@ -14,6 +14,8 @@ const WebGLWrapper: React.FC<ReadOnlyChildren> = ({ children }) => {
 
   // Three.js functionality is not supported on your browser
   // Background graphics will not be displayed
+  // Or use a fallback image when WebGL is not supported
+
   return children;
 };
 

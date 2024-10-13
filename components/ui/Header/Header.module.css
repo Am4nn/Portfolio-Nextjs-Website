@@ -1,24 +1,33 @@
-.alignment {
-  position: fixed;
-  z-index: 10;
-  left: 40px;
-  right: auto;
-  top: 40px;
-  bottom: 40px;
-}
-
-@media (max-width: 1080px) {
-  .alignment {
-    left: 20px;
-    right: auto;
-    top: 20px;
-    bottom: 20px;
-  }
-}
-
 .header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.alignment {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  padding: 40px;
+  padding-top: 25px;
+}
+
+.topNavbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  pointer-events: auto;
+}
+
+.leftSidebar {
+  pointer-events: auto;
+}
+
+@media (max-width: 1080px) {
+  .alignment {
+    padding: 16px;
+  }
 }
