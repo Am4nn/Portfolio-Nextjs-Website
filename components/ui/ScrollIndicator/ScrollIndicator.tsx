@@ -1,35 +1,20 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
 import styles from './ScrollIndicator.module.css';
 import Link from 'next/link';
+import useScrollIndicator from '@/hooks/useScrollIndicator';
 
-const ScrollIndicator = ({ mountDelay = 0, href }: { mountDelay?: number, href: string }) => {
-  const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState<boolean>(true);
-  const [scrollIndicatorIsMount, setScrollIndicatorIsMount] = useState<boolean>(false);
+interface ScrollIndicatorProps {
+  mountDelay?: number;
+  href: string;
+}
 
-  useEffect(() => {
-
-    const hiddenId = setTimeout(() => setScrollIndicatorHidden(false), (mountDelay - 1));
-    const mountId = setTimeout(() => setScrollIndicatorIsMount(true), (mountDelay));
-
-    const toggleAtTop = () => {
-      const scrolled = document.documentElement.scrollTop;
-      if (scrolled >= 20) setScrollIndicatorHidden(true);
-      else if (scrolled < 20) setScrollIndicatorHidden(false);
-    };
-    window.addEventListener('scroll', toggleAtTop);
-
-    return () => {
-      clearTimeout(hiddenId);
-      clearTimeout(mountId);
-      window.removeEventListener('scroll', toggleAtTop);
-    }
-  }, [mountDelay]);
+const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({ mountDelay = 0, href }) => {
+  const { isHidden } = useScrollIndicator(mountDelay);
 
   return (
     <Link
       className={styles.scrollIndicator}
-      data-hidden={scrollIndicatorIsMount ? scrollIndicatorHidden : true}
+      data-hidden={isHidden}
       href={href}
       aria-label="Scroll to next section"
     />

@@ -10,6 +10,7 @@ import DisplacementSphere from "@/components/ui/DisplacementSphere/DisplacementS
 import Footer from "@/components/ui/Footer/Footer";
 import Intro from "./sections/Intro/Intro";
 import About from "./sections/About/About";
+import ScrollDown from "@/components/ui/ScrollDown/ScrollDown";
 
 // Only render the DisplacementSphere component on the client side
 // const DisplacementSphere = dynamic(() => import("@/components/ui/DisplacementSphere/DisplacementSphere"), { ssr: false });
@@ -25,7 +26,8 @@ export default function Home() {
       <GridBackgroudLayout>
         <MainComponent>
           <Intro />
-          <ScrollIndicator mountDelay={2000} href="#about" />
+          {/* <ScrollIndicator mountDelay={2000} href="#about" /> */}
+          <ScrollDown mountDelay={2000} href="#about" />
           <About />
           <Footer />
         </MainComponent>
