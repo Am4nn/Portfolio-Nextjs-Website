@@ -36,10 +36,10 @@ const springConfig = {
 const backgroundColor = { r: 18, g: 18, b: 18 };
 const parallaxFactor = 0.45;
 
-export default function DisplacementSphere(props: any) {
-  const { theme } = useTheme();
+const DisplacementSphere: React.FC = (props) => {
+  const { resolvedTheme: theme } = useTheme();
   const start = useRef(Date.now());
-  const canvasRef = useRef<HTMLCanvasElement | undefined>();
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const mouse = useRef<Vector2>();
   const renderer = useRef<WebGLRenderer>();
   const camera = useRef<PerspectiveCamera>();
@@ -60,7 +60,7 @@ export default function DisplacementSphere(props: any) {
     const { innerWidth, innerHeight } = window;
     mouse.current = new Vector2(0.8, 0.5);
     renderer.current = new WebGLRenderer({
-      canvas: canvasRef.current,
+      canvas: canvasRef.current ?? undefined,
       antialias: false,
       alpha: true,
       powerPreference: 'high-performance',
@@ -215,11 +215,13 @@ export default function DisplacementSphere(props: any) {
     <motion.canvas
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ ease: cubicBezier(0.4, 0.0, 0.2, 1), duration: 3 }}
-      className="bg-background absolute inset-0"
+      transition={{ ease: cubicBezier(0.4, 0.0, 0.2, 1), duration: 2 }}
+      className="bg-background transition-colors-400 absolute inset-0"
       aria-hidden
       ref={canvasRef}
       {...props}
     />
   );
 };
+
+export default DisplacementSphere;

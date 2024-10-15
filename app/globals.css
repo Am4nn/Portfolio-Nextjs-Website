@@ -77,11 +77,15 @@
 }
 
 @layer base {
+  .transition-colors-400 {
+    transition: background-color 400ms ease-in-out, color 400ms ease-in-out;
+  }
+
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground transition-colors-400;
   }
 }
 
