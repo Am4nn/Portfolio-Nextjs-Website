@@ -3,7 +3,14 @@ import styles from './ScrollDown.module.css';
 import Link from 'next/link';
 
 interface ScrollDownProps {
+  /**
+   * The delay in milliseconds before the component is mounted.
+   */
   mountDelay?: number;
+
+  /**
+   * The href for the anchor tag
+   */
   href: string;
 }
 

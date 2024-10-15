@@ -1,6 +1,6 @@
 .scrollIndicator {
   position: absolute;
-  bottom: 4rem;
+  bottom: 3rem;
   transition: all 300ms ease-in-out;
 }
 
@@ -14,7 +14,6 @@
 }
 
 .scrolldown {
-  /* --color: skyblue; */
   --color: hsl(var(--foreground) / 40%);
   --sizeX: 30px;
   --sizeY: 50px;
