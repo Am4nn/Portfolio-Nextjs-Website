@@ -1,4 +1,8 @@
 .StyledSocialList {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 50;
   display: flex;
   flex-direction: column;
   align-items: center;

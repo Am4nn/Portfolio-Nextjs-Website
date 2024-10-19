@@ -93,7 +93,7 @@ export default function RootLayout({ children }: ReadOnlyChildren) {
 
             <SocialNavIcons />
 
-          <Header />
+            <Navbar />
 
             <QueryProvider>
               {children}
