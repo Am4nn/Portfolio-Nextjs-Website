@@ -15,11 +15,6 @@ import withThemeRerender from "@/components/hoc/withThemeRerender";
 // Only render the DisplacementSphere component on the client side
 const DisplacementSphere = dynamic(() => import("@/components/ui/DisplacementSphere/DisplacementSphere"), {
   ssr: false,
-  loading: () => (
-    <div className="pointer-events-none flex justify-center items-center">
-      <p>Loading background graphics...</p>
-    </div>
-  ),
 });
 
 const ThemeAwareDisplacementSphere = withThemeRerender(DisplacementSphere);
