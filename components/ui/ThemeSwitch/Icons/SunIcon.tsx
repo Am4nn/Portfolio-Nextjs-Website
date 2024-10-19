@@ -1,73 +1,18 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { transition } from "@/utils/constants";
 
-export const SunIcon = () => {
-  const whileTap = { scale: 0.95, rotate: 15 };
-
-  const raysVariants = {
-    initial: { rotate: 45 },
-    animate: { rotate: 0, transition }
-  };
-
-  const coreVariants = {
-    initial: { scale: 1.5 },
-    animate: { scale: 1, transition }
-  };
-
-  return (
-    <motion.svg
-      key="sun"
-      width="40"
-      height="40"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      whileTap={whileTap}
-      // Centers the rotation anchor point vertically & horizontally
-      style={{ originX: "50%", originY: "50%" }}
-    >
-      <motion.circle
-        cx="11.9998"
-        cy="11.9998"
-        r="5.75375"
-        fill="currentColor"
-        initial="initial"
-        animate="animate"
-        variants={coreVariants}
-      />
-      <motion.g initial="initial" animate="animate" variants={raysVariants}>
-        <circle
-          cx="3.08982"
-          cy="6.85502"
-          r="1.71143"
-          transform="rotate(-60 3.08982 6.85502)"
-          fill="currentColor"
-        />
-        <circle
-          cx="3.0903"
-          cy="17.1436"
-          r="1.71143"
-          transform="rotate(-120 3.0903 17.1436)"
-          fill="currentColor"
-        />
-        <circle cx="12" cy="22.2881" r="1.71143" fill="currentColor" />
-        <circle
-          cx="20.9101"
-          cy="17.1436"
-          r="1.71143"
-          transform="rotate(-60 20.9101 17.1436)"
-          fill="currentColor"
-        />
-        <circle
-          cx="20.9101"
-          cy="6.8555"
-          r="1.71143"
-          transform="rotate(-120 20.9101 6.8555)"
-          fill="currentColor"
-        />
-        <circle cx="12" cy="1.71143" r="1.71143" fill="currentColor" />
-      </motion.g>
-    </motion.svg>
-  );
-}
+export const SunIcon: React.FC = (props) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height="1em"
+    role="presentation"
+    viewBox="0 0 24 24"
+    width="1em"
+    {...props}
+  >
+    <g fill="currentColor">
+      <path d="M19 12a7 7 0 11-7-7 7 7 0 017 7z" />
+      <path d="M12 22.96a.969.969 0 01-1-.96v-.08a1 1 0 012 0 1.038 1.038 0 01-1 1.04zm7.14-2.82a1.024 1.024 0 01-.71-.29l-.13-.13a1 1 0 011.41-1.41l.13.13a1 1 0 010 1.41.984.984 0 01-.7.29zm-14.28 0a1.024 1.024 0 01-.71-.29 1 1 0 010-1.41l.13-.13a1 1 0 011.41 1.41l-.13.13a1 1 0 01-.7.29zM22 13h-.08a1 1 0 010-2 1.038 1.038 0 011.04 1 .969.969 0 01-.96 1zM2.08 13H2a1 1 0 010-2 1.038 1.038 0 011.04 1 .969.969 0 01-.96 1zm16.93-7.01a1.024 1.024 0 01-.71-.29 1 1 0 010-1.41l.13-.13a1 1 0 011.41 1.41l-.13.13a.984.984 0 01-.7.29zm-14.02 0a1.024 1.024 0 01-.71-.29l-.13-.14a1 1 0 011.41-1.41l.13.13a1 1 0 010 1.41.97.97 0 01-.7.3zM12 3.04a.969.969 0 01-1-.96V2a1 1 0 012 0 1.038 1.038 0 01-1 1.04z" />
+    </g>
+  </svg>
+);
