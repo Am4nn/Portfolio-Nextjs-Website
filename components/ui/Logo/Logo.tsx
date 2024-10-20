@@ -9,6 +9,7 @@ interface LogoProps {
   height?: number | string;
   transitionDuration?: number;
   startDelay?: number;
+  href?: string;
 }
 
 const handleScrollReset = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -17,8 +18,8 @@ const handleScrollReset = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent
   window.location.hash = '';
 }
 
-const Logo = ({ width = 36, height = 36, transitionDuration = 0.3, startDelay = 0.5 }: LogoProps) => (
-  <Link aria-label='Aman Arya | Portfolio' href='#' onClick={handleScrollReset}>
+const Logo = ({ width = 36, height = 36, transitionDuration = 0.3, startDelay = 0.5, href = '/' }: LogoProps) => (
+  <Link aria-label='Aman Arya | Portfolio' href={href} onClick={handleScrollReset}>
     <motion.svg
       className="text-foreground hover:text-foreground_secondary transition-colors duration-300"
       width={width}

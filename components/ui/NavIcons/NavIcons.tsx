@@ -3,12 +3,12 @@
 import React from 'react'
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useMediaQuery } from '@/hooks';
 import VisuallyHidden from '@/components/wrapper/VisuallyHidden/VisuallyHidden';
 import { Icon } from '@/components/ui/Icons';
 import { useDelayedMount } from '@/hooks';
 import { socialMediaDetails } from '@/utils/config';
 import styles from './NavIcons.module.css';
+import { cn } from '@/utils/cn';
 
 // in milliseconds
 const socialSideBarMountDelay = 500 + 1000;
@@ -23,16 +23,15 @@ const fadeInAnimationVariants = {
 
 export default function SocialNavIcons() {
   const isMounted = useDelayedMount(socialSideBarMountDelay);
-  const isMobile = useMediaQuery('(max-width: 767.5px)');
 
   return (
     <AnimatePresence>
-      {(!isMobile && isMounted) ? <NavIcons /> : <HiddenNavIcons />}
+      {isMounted ? <AnimatedNavIcons /> : <HiddenNavIcons />}
     </AnimatePresence>
   );
 }
 
-const NavIcons = () => (
+const AnimatedNavIcons = () => (
   <ul className={styles.StyledSocialList}>
     {socialMediaDetails && socialMediaDetails.map(({ url, name }, index) => (
       <motion.li
@@ -63,3 +62,15 @@ const HiddenNavIcons = () => (
     </ul>
   </VisuallyHidden>
 );
+
+export const NavIcons: React.FC<{ className?: string }> = ({ className }) => (
+  <ul className={cn(className, styles.StyledSocialList)}>
+    {socialMediaDetails && socialMediaDetails.map(({ url, name }, index) => (
+      <li key={index}>
+        <Link href={url} aria-label={name} target="_blank" rel="noreferrer">
+          <Icon name={name} />
+        </Link>
+      </li>
+    ))}
+  </ul>
+)

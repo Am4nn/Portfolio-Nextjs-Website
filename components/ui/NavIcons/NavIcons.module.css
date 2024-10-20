@@ -1,5 +1,5 @@
 .StyledSocialList {
-  position: absolute;
+  position: fixed;
   bottom: 1.5rem;
   left: 1.5rem;
   z-index: 50;
@@ -9,6 +9,12 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+@media (max-width: 767.5px) {
+  .StyledSocialList {
+    flex-direction: row;
+  }
 }
 
 .StyledSocialList li a:hover,
