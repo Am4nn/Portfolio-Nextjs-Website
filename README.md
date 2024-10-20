@@ -2,7 +2,7 @@
 
 Welcome to my portfolio website built with Nextjs:14, Typescript, Tailwind, Framer-Motion, Three.js, and hosted on Vercel with a custom domain [amanarya.com](https://www.amanarya.com)
 
-![Portfolio Screenshot Wide](public/preview-wide.png)
+![Portfolio Screenshot Wide](public/preview-wide-dark.png)
 
 ## Overview
 
