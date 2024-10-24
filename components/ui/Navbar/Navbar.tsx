@@ -19,27 +19,25 @@ const Navbar: React.FC = () => {
       maxWidth="full"
       className={`${isMenuOpen ? "bg-background" : "bg-transparent"} fixed transition-colors-400`}
     >
-      <NavbarContent justify="start">
-        <NavbarBrand as="li">
-          <Logo />
-        </NavbarBrand>
-      </NavbarContent>
+      <NavbarBrand>
+        <Logo />
+      </NavbarBrand>
 
       <NavbarContent className="transition-colors-400" justify="end">
         <NavbarItem>
-          <Button as={Link} color="primary" href="mailto:125aryaaman@gmail.com" variant="solid">
+          <Button as={Link} color="primary" href="mailto:125aryaaman@gmail.com" aria-label="Contact Me" variant="solid" radius="sm">
             Contact
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" target="_blank" href="/resume.pdf" variant="flat">
+          <Button as={Link} color="default" target="_blank" href="/resume.pdf" aria-label="Resume" variant="flat" radius="sm">
             Resume
           </Button>
         </NavbarItem>
         <NavbarItem>
           <ThemeSwitch />
         </NavbarItem>
-        <NavbarMenuToggle className="md:hidden" aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
+        {/* <NavbarMenuToggle className="md:hidden" aria-label={isMenuOpen ? "Close menu" : "Open menu"} /> */}
       </NavbarContent>
     </NextUINavbar >
   );
