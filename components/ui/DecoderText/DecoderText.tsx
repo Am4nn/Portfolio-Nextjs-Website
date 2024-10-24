@@ -49,6 +49,18 @@ function shuffle(content: string[], output: { type: string; value: string; }[], 
   });
 }
 
+/**
+ * A memoized React component that decodes and animates text.
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} props.text - The text to be decoded and animated.
+ * @param {boolean} [props.start=true] - Whether to start the animation immediately.
+ * @param {number} [props.startDelay=0] - The delay before starting the animation, in milliseconds.
+ * @param {string} [props.eachCharClass] - Additional class to apply to each character.
+ * @param {string} [props.className] - Additional class to apply to the outermost span.
+ * @param {Object} [props.rest] - Additional properties to spread onto the outermost span.
+ * @returns {JSX.Element} The rendered component.
+ */
 const DecoderText = memo(function MemoDecoderText(
   { text, start = true, startDelay = 0, eachCharClass, className, ...rest }: DecoderTextProps
 ) {

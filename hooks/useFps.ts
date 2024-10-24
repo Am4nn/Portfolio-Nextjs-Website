@@ -2,6 +2,11 @@ import { useCallback, useEffect, useRef } from 'react';
 
 const HISTORY_LENGTH = 9;
 
+/**
+ * Measures the frames per second of the browser.
+ * @param running Whether the fps should be measured.
+ * @returns The fps, whether the fps is low, and a function to measure the fps.
+ */
 export function useFps(running = true) {
   const fps = useRef(0);
   const prevTime = useRef(0);

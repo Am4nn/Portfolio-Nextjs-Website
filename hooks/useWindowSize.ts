@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+/**
+ * Gets the window size.
+ * @returns The window size.
+ */
 export function useWindowSize() {
   const dimensions = useRef({ width: 1280, height: 800 });
 
