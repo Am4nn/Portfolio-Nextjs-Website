@@ -5,12 +5,12 @@ import GridBackgroudLayout from "@/components/wrapper/GridBackgroudLayout/GridBa
 import MainComponent from "@/components/wrapper/MainComponent/MainComponent";
 import ErrorBoundary from "@/components/wrapper/ErrorBoundary/ErrorBoundary";
 import WebGLWrapper from "@/components/wrapper/WebGLWrapper/WebGLWrapper";
-// import DisplacementSphere from "@/components/ui/DisplacementSphere/DisplacementSphere";
 import Footer from "@/components/ui/Footer/Footer";
-import Intro from "./sections/Intro/Intro";
-import About from "./sections/About/About";
 import ScrollDown from "@/components/ui/ScrollDown/ScrollDown";
 import withThemeRerender from "@/components/hoc/withThemeRerender";
+import { SCROLL_DOWN_LOAD_DELAY } from "@/utils/timing";
+import Intro from "./sections/Intro/Intro";
+import About from "./sections/About/About";
 
 // Only render the DisplacementSphere component on the client side
 const DisplacementSphere = dynamic(() => import("@/components/ui/DisplacementSphere/DisplacementSphere"), {
@@ -29,7 +29,7 @@ const Home = () => (
     <GridBackgroudLayout>
       <MainComponent>
         <Intro />
-        <ScrollDown mountDelay={2000} href="#about" />
+        <ScrollDown mountDelay={SCROLL_DOWN_LOAD_DELAY} href="#about" />
         <About />
         <Footer />
       </MainComponent>
