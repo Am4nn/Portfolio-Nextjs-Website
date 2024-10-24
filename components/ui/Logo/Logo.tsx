@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { LOGO_LOAD_DELAY, LOGO_LOAD_DURATION } from '@/utils/timing';
 
 interface LogoProps {
   width?: number | string;
@@ -18,7 +19,7 @@ const handleScrollReset = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent
   window.location.hash = '';
 }
 
-const Logo = ({ width = 36, height = 36, transitionDuration = 0.3, startDelay = 0.5, href = '/' }: LogoProps) => (
+const Logo = ({ width = 36, height = 36, transitionDuration = LOGO_LOAD_DURATION, startDelay = LOGO_LOAD_DELAY, href = '/' }: LogoProps) => (
   <Link aria-label='Portfolio Icon' href={href} onClick={handleScrollReset}>
     <motion.svg
       className="text-foreground hover:text-foreground_secondary transition-colors duration-300"
