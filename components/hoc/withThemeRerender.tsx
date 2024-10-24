@@ -11,9 +11,9 @@ interface WithThemeRerenderProps {
 };
 
 /**
- * A HOC that will re-render the component when the theme changes
- * 
- * @param WrappedComponent The component to wrap
+ * A higher-order component that re-renders the wrapped component when the theme changes.
+ * @param WrappedComponent - The component to be wrapped.
+ * @returns The wrapped component.
  */
 const withThemeRerender = <T extends Object>(WrappedComponent: ComponentType<T>): React.FC<T & WithThemeRerenderProps> => {
   const ComponentWithTheme: React.FC<T & WithThemeRerenderProps> = (props) => {
