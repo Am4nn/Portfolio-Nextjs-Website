@@ -29,6 +29,7 @@ export default function ThemeSwitch() {
       color="success"
       startContent={<SunIcon />}
       endContent={<MoonIcon />}
+      aria-label='Toggle theme'
     />
   );
 }
