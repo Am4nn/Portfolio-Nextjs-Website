@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 
+/**
+ * Observes the size of an element.
+ * @returns The element and its size.
+ */
 export function useObserveElement() {
   const scope = useRef<HTMLElement | any | null>(null);
   const [rect, setRect] = useState<DOMRectReadOnly>();

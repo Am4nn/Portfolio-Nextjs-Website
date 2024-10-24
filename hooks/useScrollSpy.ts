@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 
+/**
+ * Tracks the scroll position and updates the current section based on the scroll position.
+ * @param sections The sections to track.
+ * @param offset The offset to apply to the scroll position.
+ * @returns The current section and a function to refresh the active nav link.
+ */
 export function useScrollSpy(sections: string[], offset: number = 0) {
   const [currentSection, setCurrentSection] = useState<string | null>(null);
 

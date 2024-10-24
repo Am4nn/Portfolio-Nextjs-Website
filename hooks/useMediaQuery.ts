@@ -8,6 +8,12 @@ type UseMediaQueryOptions = {
 
 const IS_SERVER = typeof window === 'undefined';
 
+/**
+ * A hook that uses `window.matchMedia` to check if the media query matches.
+ * @param query The media query to check.
+ * @param options The options for the hook.
+ * @returns Whether the media query matches.
+ */
 export function useMediaQuery(
   query: string,
   {

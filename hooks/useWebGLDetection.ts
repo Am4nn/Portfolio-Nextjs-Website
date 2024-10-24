@@ -6,6 +6,10 @@ export interface WebGLDetectionResult {
   error?: Error;
 }
 
+/**
+ * Detects whether WebGL is supported on the client.
+ * @returns Whether WebGL is supported and an error if it is not.
+ */
 export function useWebGLDetection(): WebGLDetectionResult {
   const isSupported = useRef(false);
   const [error, setError] = useState<Error>();

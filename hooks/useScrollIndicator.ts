@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
 
+/**
+ * Hides the scroll indicator when the user scrolls down and shows it when the user scrolls up.
+ * @param mountDelay The delay in seconds before mounting the scroll indicator.
+ * @param scrollThreshold The scroll threshold in pixels before hiding the scroll indicator.
+ * @returns Whether the scroll indicator is hidden.
+ */
 const useScrollIndicator = (mountDelay = 0, scrollThreshold = 20) => {
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(true);
   const [scrollIndicatorIsMount, setScrollIndicatorIsMount] = useState(false);
