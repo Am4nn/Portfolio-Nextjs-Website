@@ -68,7 +68,7 @@ const About = () => {
               width={728}
               height={1125}
               quality={95}
-              alt="Aman Arya Picture"
+              alt="Aman Arya's Picture"
             />
           </div>
         </div>
