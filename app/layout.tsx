@@ -11,7 +11,7 @@ import { longDescription } from "@/utils/config";
 import { ReadOnlyChildren } from "@/utils/types";
 import UIHelpers from "@/components/ui/UIHelpers/UIHelpers";
 import Navbar from "@/components/ui/Navbar/Navbar";
-import SocialNavIcons from "@/components/ui/NavIcons/NavIcons";
+import NavIcons from "@/components/ui/NavIcons/NavIcons";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -91,9 +91,8 @@ export default function RootLayout({ children }: ReadOnlyChildren) {
         <ThemeProvider>
           <NextUIProvider>
 
-            <SocialNavIcons />
-
             <Navbar />
+            <NavIcons />
 
             <QueryProvider>
               {children}
