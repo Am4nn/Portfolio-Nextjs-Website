@@ -10,20 +10,18 @@ import { socialMediaDetails } from '@/utils/config';
 import { cn } from '@/utils/cn';
 import { Code } from '@nextui-org/react';
 import styles from './NavIcons.module.css';
-
-// in milliseconds
-const socialSideBarMountDelay = 500 + 1000;
+import { NAV_ICONS_LOAD_DELAY, NAV_ICONS_LOAD_DURATION } from '@/utils/timing';
 
 const fadeInAnimationVariants = {
   initial: { y: 20, opacity: 0, scale: 0.6, filter: "blur(20px)" },
   animate: (index: number) => ({
     y: 0, opacity: 1, scale: 1, filter: "blur(0px)",
-    transition: { duration: 0.3, delay: index * 0.1 }
+    transition: { duration: NAV_ICONS_LOAD_DURATION, delay: index * 0.1 }
   })
 }
 
-export default function SocialNavIcons() {
-  const isMounted = useDelayedMount(socialSideBarMountDelay);
+export default function NavIcons() {
+  const isMounted = useDelayedMount(NAV_ICONS_LOAD_DELAY);
   const isMobile = useMediaQuery('(max-width: 767.5px)');
 
   return (
@@ -55,6 +53,7 @@ const AnimatedNavIcons: React.FC<{ className?: string }> = ({ className }) => (
         variants={fadeInAnimationVariants}
         initial="initial"
         animate="animate"
+        exit="initial"
         custom={index}
       >
         <Link href={url} aria-label={name} target="_blank" rel="noreferrer">
