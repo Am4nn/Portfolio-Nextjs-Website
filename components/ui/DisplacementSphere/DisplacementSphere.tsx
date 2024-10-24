@@ -26,6 +26,7 @@ import { useMediaQuery } from '@/hooks';
 
 import fragmentShader from './displacementSphereFragment.glsl';
 import vertexShader from './displacementSphereVertex.glsl';
+import { DISPLACEMENT_SPHERE_LOAD_DURATION } from '@/utils/timing';
 
 const springConfig = {
   stiffness: 30,
@@ -33,7 +34,6 @@ const springConfig = {
   mass: 2,
 };
 
-const backgroundColor = { r: 18, g: 18, b: 18 };
 const parallaxFactor = 0.45;
 
 const DisplacementSphere: React.FC = (props) => {
@@ -215,7 +215,7 @@ const DisplacementSphere: React.FC = (props) => {
     <motion.canvas
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ ease: cubicBezier(0.4, 0.0, 0.2, 1), duration: 2 }}
+      transition={{ ease: cubicBezier(0.4, 0.0, 0.2, 1), duration: DISPLACEMENT_SPHERE_LOAD_DURATION }}
       className="bg-background transition-colors-400 absolute inset-0"
       aria-hidden
       ref={canvasRef}
