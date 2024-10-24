@@ -8,19 +8,17 @@ import { introAnimatedText, myName, shortDescription } from "@/utils/config";
 import { gotham_medium, raleway } from '@/utils/fonts';
 import { cn } from '@/utils/cn';
 import "./Intro.css";
-
-const introMountDelay = 1; // in seconds
-const decoderTextStartDelay = 1000 + 100; // in milliseconds
+import { DECODER_TEXT_START_DELAY, INTRO_LOAD_DELAY, INTRO_LOAD_DURATION, SCRAMBLING_TEXT_DELAY } from '@/utils/timing';
 
 function useIntroAnimation() {
   const [scope, animate] = useAnimate();
-  const staggerIntroItems = stagger(0.1, { startDelay: introMountDelay });
+  const staggerIntroItems = stagger(0.1, { startDelay: INTRO_LOAD_DELAY });
 
   useEffect(() => {
     animate(
       "[data-introanimate]",
       { opacity: 1, translate: '0px 0px', scale: 1, filter: "blur(0px)" },
-      { duration: 0.3, delay: staggerIntroItems }
+      { duration: INTRO_LOAD_DURATION, delay: staggerIntroItems }
     );
 
   }, [animate, staggerIntroItems]);
@@ -40,7 +38,7 @@ export default function Intro() {
         </div>
 
         <h1 data-introanimate className="myname font-bold font-2-4">
-          <DecoderText text={`I’m ${myName}`} eachCharClass="namechar" startDelay={decoderTextStartDelay} />
+          <DecoderText text={`I’m ${myName}`} eachCharClass="namechar" startDelay={DECODER_TEXT_START_DELAY} />
         </h1>
 
         <div data-introanimate className={raleway.className}>
@@ -48,7 +46,7 @@ export default function Intro() {
         </div>
 
         <div data-introanimate className="font-medium fluidz-48 mb-5 font-2-4">
-          <ScramblingText data={introAnimatedText} delay={1500} />
+          <ScramblingText data={introAnimatedText} delay={SCRAMBLING_TEXT_DELAY} />
         </div>
 
       </div>
