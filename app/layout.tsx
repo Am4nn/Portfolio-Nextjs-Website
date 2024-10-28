@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: longDescription,
     images: "https://www.amanarya.com/icon.png",
   },
-  keywords: ["Aman Arya", "portfolio", "Aman Arya Portfolio", "Aman Arya | Portfolio", "aman", "aman portfolio"],
+  keywords: ["Aman Arya", "Portfolio", "Aman Arya Portfolio", "Aman Arya | Portfolio", "Aman", "Aman's Portfolio", "Aman Portfolio", "aman", "aman portfolio", "aman's portfolio"],
   manifest: "https://www.amanarya.com/manifest.json",
   icons: [
     {
@@ -86,7 +86,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: ReadOnlyChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(gotham.className, gotham.variable, 'antialiased overflow-x-hidden')}>
+      <body className={cn(gotham.className, gotham.variable, 'antialiased', 'overflow-x-hidden')}>
 
         <ThemeProvider>
           <NextUIProvider>

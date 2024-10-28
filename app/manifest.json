@@ -65,15 +65,27 @@
   "background_color": "#141414",
   "screenshots": [
     {
-      "src": "/preview-wide.png",
+      "src": "/preview-wide-dark.png",
       "type": "image/png",
-      "sizes": "768x368",
+      "sizes": "1908x903",
       "form_factor": "wide"
     },
     {
-      "src": "/preview-narrow.png",
+      "src": "/preview-narrow-dark.png",
       "type": "image/png",
-      "sizes": "1076x2139",
+      "sizes": "803x1600",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/preview-wide-light.png",
+      "type": "image/png",
+      "sizes": "1912x907",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/preview-narrow-light.png",
+      "type": "image/png",
+      "sizes": "803x1600",
       "form_factor": "narrow"
     }
   ]
