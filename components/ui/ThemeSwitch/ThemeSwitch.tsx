@@ -11,7 +11,7 @@ export default function ThemeSwitch() {
 
   // checked -> dark mode
   // unchecked -> light mode
-  // default -> system mode
+  // default -> dark mode
 
   React.useEffect(() => {
     setIsSelected(resolvedTheme === 'light');
