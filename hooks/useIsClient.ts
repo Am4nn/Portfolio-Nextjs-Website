@@ -12,5 +12,5 @@ export function useIsClient() {
     setClient(true);
   }, []);
 
-  return isClient;
+  return isClient && typeof window !== 'undefined' && typeof document !== 'undefined';
 }

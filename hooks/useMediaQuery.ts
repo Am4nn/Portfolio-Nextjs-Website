@@ -25,8 +25,12 @@ export function useMediaQuery(
     if (IS_SERVER) {
       return defaultValue;
     }
-    return window.matchMedia(query).matches;
-  }
+    try {
+      return window.matchMedia(query).matches;
+    } catch {
+      return defaultValue; // Fallback for invalid queries
+    }
+  };
 
   const [matches, setMatches] = useState<boolean>(() => {
     if (initializeWithValue) {

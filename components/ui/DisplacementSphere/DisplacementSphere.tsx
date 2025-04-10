@@ -148,15 +148,19 @@ const DisplacementSphere: React.FC = (props) => {
   }, [reduceMotion, windowSize]);
 
   useEffect(() => {
-    const onMouseMove = throttle((event: any) => {
-      const position = {
-        x: event.clientX / window.innerWidth,
-        y: event.clientY / window.innerHeight,
-      };
+    const onMouseMove = throttle(
+      (event: any) => {
+        const position = {
+          x: event.clientX / window.innerWidth,
+          y: event.clientY / window.innerHeight,
+        };
 
-      rotationX.set(position.y / 2);
-      rotationY.set(position.x / 2);
-    }, 100);
+        rotationX.set(position.y / 2);
+        rotationY.set(position.x / 2);
+      },
+      100,
+      true // Enable trailing calls
+    );
 
     if (!isMobile && !reduceMotion && isInViewport) {
       window.addEventListener('mousemove', onMouseMove);

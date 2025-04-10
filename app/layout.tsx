@@ -11,8 +11,11 @@ import { longDescription } from "@/utils/config";
 import { ReadOnlyChildren } from "@/utils/types";
 import UIHelpers from "@/components/ui/UIHelpers/UIHelpers";
 import Navbar from "@/components/ui/Navbar/Navbar";
-import NavIcons from "@/components/ui/NavIcons/NavIcons";
+import dynamic from 'next/dynamic';
+import ErrorBoundary from '@/components/wrapper/ErrorBoundary/ErrorBoundary';
 import "./globals.css";
+
+const NavIcons = dynamic(() => import('@/components/ui/NavIcons/NavIcons'));
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.amanarya.com/"),
@@ -72,6 +75,7 @@ export const metadata: Metadata = {
       "type": "image/png"
     }
   ],
+  robots: "index, follow",
 };
 
 export const viewport: Viewport = {
@@ -87,23 +91,24 @@ export default function RootLayout({ children }: ReadOnlyChildren) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(gotham.className, gotham.variable, 'antialiased', 'overflow-x-hidden')}>
+        <ErrorBoundary>
+          <ThemeProvider>
+            <NextUIProvider>
 
-        <ThemeProvider>
-          <NextUIProvider>
+              <Navbar />
+              <NavIcons />
 
-            <Navbar />
-            <NavIcons />
+              <QueryProvider>
+                {children}
+              </QueryProvider>
 
-            <QueryProvider>
-              {children}
-            </QueryProvider>
+              <UIHelpers />
 
-            <UIHelpers />
+              <Toaster position="top-right" reverseOrder={false} />
 
-            <Toaster position="top-right" reverseOrder={false} />
-
-          </NextUIProvider>
-        </ThemeProvider>
+            </NextUIProvider>
+          </ThemeProvider>
+        </ErrorBoundary>
 
         <Analytics />
         <SpeedInsights />

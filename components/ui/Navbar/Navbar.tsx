@@ -16,7 +16,7 @@ const navbarVaraints: Variants = {
 };
 
 const Navbar: React.FC = () => (
-  <AnimatePresence>
+  <AnimatePresence initial={false}>
     <NextUINavbar
       as={motion.nav}
       isBlurred={false}
@@ -26,6 +26,7 @@ const Navbar: React.FC = () => (
       animate="blurIn"
       exit="initial"
       variants={navbarVaraints}
+      aria-label="Main Navigation"
     >
       <NavbarBrand>
         <Logo />
@@ -37,7 +38,7 @@ const Navbar: React.FC = () => (
             as={Link}
             color="primary"
             href="mailto:125aryaaman@gmail.com"
-            aria-label="Contact Me"
+            aria-label="Send an email to Aman Arya"
             variant="solid"
             radius="sm"
           >
@@ -50,7 +51,7 @@ const Navbar: React.FC = () => (
             color="default"
             target="_blank"
             href="/resume.pdf"
-            aria-label="Resume"
+            aria-label="Download Aman Arya's Resume"
             variant="flat"
             radius="sm"
           >

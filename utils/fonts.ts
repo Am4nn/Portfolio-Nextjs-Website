@@ -3,12 +3,14 @@ import { Inter, Montserrat, Raleway, Quantico, Tiro_Devanagari_Hindi } from "nex
 
 export const gotham = localFont({
   src: '../public/fonts/gotham-book.woff2',
-  variable: '--font-gotham'
+  variable: '--font-gotham',
+  display: 'swap' // Ensures text is visible while the font loads
 });
 
 export const gotham_medium = localFont({
   src: '../public/fonts/gotham-medium.woff2',
-  variable: '--font-gotham-medium'
+  variable: '--font-gotham-medium',
+  display: 'swap' // Ensures text is visible while the font loads
 });
 
 export const inter = Inter({

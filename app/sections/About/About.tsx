@@ -52,11 +52,11 @@ const About = () => {
 
           <StyledButton
             className={gotham.className}
-            aria-label={expanded ? 'show less' : 'show more'}
+            aria-label={expanded ? 'Collapse skills list' : 'Expand skills list'}
             onClick={toggleExpand}
             endIcon={<Icon name={expanded ? 'ArrowUp' : "ArrowDown"} />}
           >
-            {expanded ? 'show less' : 'show more'}
+            {expanded ? 'Show less' : 'Show more'}
           </StyledButton>
         </div>
 
@@ -69,6 +69,7 @@ const About = () => {
               height={1125}
               quality={95}
               alt="Aman Arya's Picture"
+              loading="lazy" // Enable lazy loading for better performance
             />
           </div>
         </div>
