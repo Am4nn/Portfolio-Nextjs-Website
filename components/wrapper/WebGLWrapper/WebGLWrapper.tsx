@@ -2,15 +2,29 @@ import React from 'react';
 import { useIsClient, useWebGLDetection } from '@/hooks';
 import { ReadOnlyChildren } from '@/utils/types';
 import { toast } from "react-hot-toast";
+import ErrorToast from '@/components/ui/Toasts/ErrorToast';
 
 const WebGLWrapper: React.FC<ReadOnlyChildren> = ({ children }) => {
   const { isSupported, error } = useWebGLDetection();
   const isClient = useIsClient();
 
-  // In client only and Check if the browser supports WebGL
-  if (!isClient || !isSupported) {
-    // Todo: some fallback graphics
-    toast.error("WebGL is not supported on your browser. Please try a different browser or update your current one.");
+  if (!isClient) {
+    return null;
+  }
+
+  // Handle the error if WebGL is not supported
+  if (!isSupported) {
+    toast.custom((t) => (
+      <ErrorToast
+        id={t.id}
+        primaryMessage={error?.message}
+        secondaryMessage="Please check your settings or try another browser"
+      />
+    ), {
+      duration: 120000
+    });
+
+    // Can also use a fallback image when WebGL is not supported
     return null;
   }
 

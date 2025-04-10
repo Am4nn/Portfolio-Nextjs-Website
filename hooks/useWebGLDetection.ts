@@ -40,7 +40,7 @@ export function useWebGLDetection(): WebGLDetectionResult {
       renderer !== null && renderer !== undefined && renderer instanceof WebGLRenderer) {
       isSupported.current = true;
     } else {
-      setError(new Error('WebGL is not supported on your browser'));
+      setError(new Error('WebGL not supported'));
     }
 
     return () => {

@@ -1,5 +1,6 @@
 "use client"
 
+import ErrorToast from '@/components/ui/Toasts/ErrorToast';
 import React, { Component, ReactNode } from 'react';
 import { toast } from "react-hot-toast";
 
@@ -25,8 +26,13 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     console.error('Error:', error, errorInfo);
 
     // Show a toast notification for the error
-    toast.error(this.state.error?.message || "Something went wrong");
-    toast.error("An unexpected error occurred. Please try again.");
+    toast.custom(t => (
+      <ErrorToast
+        id={t.id}
+        primaryMessage={this.state.error?.message || "Something went wrong"}
+        secondaryMessage="Refresh the page or try again later."
+      />
+    ));
   }
 
   handleRetry = (): void => {
