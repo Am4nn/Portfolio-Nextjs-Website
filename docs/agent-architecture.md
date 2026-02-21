@@ -7,6 +7,7 @@ This document explains the current end-to-end architecture of the AI Agent runti
 The agent runtime allows safe, reversible UI mutations on the portfolio page through a planner-executor loop.
 
 Design goals:
+
 - Additive integration with existing portfolio UI.
 - Strictly validated tool execution.
 - Transactional safety with snapshot restore.
@@ -18,11 +19,13 @@ Primary implementation lives in `lib/agent/**`.
 ## 2) React Integration Points
 
 ### Root integration
+
 - `app/layout.tsx`
   - Wraps app tree with `AgentProvider`.
   - Mounts global `AgentPanel`.
 
 ### Homepage render integration
+
 - `app/page.tsx`
   - Reads agent state via `useAgent()`.
   - Renders sections from `state.sectionOrder`.
@@ -30,6 +33,7 @@ Primary implementation lives in `lib/agent/**`.
   - Reordering is render-driven (React state), not DOM re-parenting.
 
 ### Planner API integration
+
 - `app/api/agent/route.ts`
   - Receives planner request from client runtime.
   - Uses OpenAI Responses API with function tool output.
@@ -39,9 +43,11 @@ Primary implementation lives in `lib/agent/**`.
 ## 3) Runtime Lifecycle (Client)
 
 Core entry:
+
 - `lib/agent/runtime/agent-runtime.ts`
 
 Lifecycle steps per run:
+
 1. `START_RUN` with goal.
 2. Discovery snapshot build (`discovering`).
 3. Planner request (`planning`).
@@ -50,6 +56,7 @@ Lifecycle steps per run:
 6. End in `idle`, `stopped`, or `error`.
 
 Important controls:
+
 - Reflection loop toggle from env config.
 - Tool execution budget per iteration (`MAX_TOOL_CALLS_PER_ITERATION`).
 - Stop signal via reducer flag (`stopRequested`).
@@ -57,15 +64,18 @@ Important controls:
 ## 4) State Management
 
 Provider and hooks:
+
 - `lib/agent/state/agent-context.tsx`
   - `AgentRuntimeProvider`
   - `useAgentRuntimeContext()`
   - `useAgent()`
 
 Reducer:
+
 - `lib/agent/state/agent-reducer.ts`
 
 State includes:
+
 - Runtime status and iteration metadata.
 - Goal, logs, reflections, errors.
 - Discovery snapshot.
@@ -75,6 +85,7 @@ State includes:
 - Snapshot store and restore request channel.
 
 Session persistence:
+
 - `lib/agent/state/session-persistence.ts`
   - Persists only durable UI state:
   - `theme`, `layoutMode`, `sectionOrder`, `visibleSections`.
@@ -84,10 +95,12 @@ Session persistence:
 Discovery source is registry-driven, not broad DOM traversal.
 
 Registry:
+
 - `lib/agent/registry/sectionRegistry.ts`
 - `lib/agent/registry/targetRegistry.ts`
 
 Discovery engine:
+
 - `lib/agent/discovery/discovery-engine.ts`
   - Resolves only known registry selectors.
   - Captures component visibility, theme, layout mode.
@@ -95,6 +108,7 @@ Discovery engine:
 ## 6) Tooling and Validation Pipeline
 
 Dispatcher:
+
 - `lib/agent/tools/dispatcher.ts`
   - Enforces discovery gate for mutation tools.
   - Validates each call using mutation validator.
@@ -103,10 +117,12 @@ Dispatcher:
   - Executes tool handler and requests rollback on failure.
 
 Tool registry and implementations:
+
 - `lib/agent/tools/tool-registry.ts`
 - `lib/agent/tools/tool-impl-*.ts`
 
 Validation:
+
 - `lib/agent/validation/mutation-validator.ts`
   - Target ID validation against registry.
   - CSS whitelist enforcement for `updateCSS`.
@@ -116,12 +132,14 @@ Validation:
 ## 7) Mutation and Restore Engine
 
 Mutation engine:
+
 - `lib/agent/dom/mutation-engine.tsx`
   - Applies queued DOM mutations to known targets.
   - Runs layout health check after apply.
   - Requests snapshot restore if health fails.
 
 Layout health:
+
 - `lib/agent/dom/layout-health.ts`
   - Verifies `#portfolio-main` exists and is connected.
   - Detects collapsed main layout.
@@ -130,6 +148,7 @@ Layout health:
   - Detects unsafe canvas overlay dominance.
 
 Snapshot manager:
+
 - `lib/agent/snapshots/snapshot-manager.ts`
   - Baseline capture from live element.
   - Deep-cloned snapshot creation (immutable transactional history).
@@ -138,18 +157,21 @@ Snapshot manager:
 ## 8) Planner Contract (Server + Client)
 
 Client planner call:
+
 - `lib/agent/runtime/planner-client.ts`
   - POST to `/api/agent` with timeout.
   - Parses server response to strict `PlannerApiResponse`.
   - Uses local fallback plan if request fails.
 
 Planner schema helpers:
+
 - `lib/agent/runtime/planner-schema.ts`
   - Request parsing (`goal`, `iteration`, discovery, reflections).
   - Response parsing and strict plan validation.
   - Allowed tool list.
 
 API response contract:
+
 - `source: "openai" | "fallback"`
 - `plan: ToolCall[]`
 - `rationale?: string`
@@ -158,9 +180,11 @@ API response contract:
 ## 9) Reflection Logic
 
 Reflector:
+
 - `lib/agent/runtime/reflector.ts`
 
 Completion checks are structural:
+
 - Theme delta.
 - Section order delta.
 - Visibility set delta.
@@ -172,9 +196,11 @@ No-change loops do not incorrectly report success unless explicitly intended (fo
 ## 10) Feature Flags and Environment
 
 Config:
+
 - `lib/agent/core/config.ts`
 
 Flags:
+
 - `NEXT_PUBLIC_AGENT_ENABLED`
   - `false` disables agent provider/runtime/panel completely.
   - Any other value (or unset) keeps agent enabled.
@@ -182,18 +208,21 @@ Flags:
   - `false` disables iterative reflection loop.
 
 Other env:
+
 - `OPENAI_API_KEY`
 - `OPENAI_AGENT_MODEL` (defaults to `gpt-4o-mini`)
 
 ## 11) Public Surface
 
 Exports:
+
 - `lib/agent/index.ts`
   - `AgentProvider`
   - `AgentPanel`
   - `useAgent`
 
 Runtime commands from `useAgent()`:
+
 - `runGoal(goal: string)`
 - `stopRun()`
 - `restoreSnapshot(snapshotId?: string)`
@@ -201,6 +230,7 @@ Runtime commands from `useAgent()`:
 ## 12) Safety Invariants
 
 Must always hold:
+
 1. Mutation tools cannot run before discovery.
 2. Unknown targets/tools are rejected.
 3. CSS writes are property-whitelisted.
@@ -214,6 +244,7 @@ Must always hold:
 ## 13) Operational Debug Checklist
 
 If runtime behaves unexpectedly:
+
 1. Check env flags in `.env.local` (`NEXT_PUBLIC_AGENT_ENABLED`, reflection flag).
 2. Inspect `state.logs` from panel activity.
 3. Confirm discovery components and section IDs are registry-aligned.

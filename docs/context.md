@@ -15,11 +15,13 @@ This document describes the current portfolio application architecture and techn
 - Deployment target: Vercel (as indicated by analytics/speed-insights usage)
 
 Core purpose:
+
 - Serve a personal portfolio site with animated intro, about section, navigation, themed UI, and supporting visual effects.
 
 ## 2) High-Level App Structure
 
 Key app entry files:
+
 - `app/layout.tsx`: global providers, navbar, nav icons, toaster, shared wrappers.
 - `app/page.tsx`: homepage composition and section rendering.
 - `app/globals.css`: global styles/tokens.
@@ -30,6 +32,7 @@ Key app entry files:
 - `app/not-found.tsx`
 
 Main homepage sections currently rendered:
+
 - Intro (`app/sections/Intro/Intro.tsx`)
 - About (`app/sections/About/About.tsx`)
 - Footer (`components/ui/Footer/Footer.tsx`)
@@ -37,20 +40,23 @@ Main homepage sections currently rendered:
 ## 3) Rendering and Composition Flow
 
 `app/layout.tsx` composes:
+
 1. `ErrorBoundary`
 2. `ThemeProvider` (`components/providers/ThemeProvider.tsx`)
 3. `NextUIProvider`
 4. Global UI:
-- `Navbar`
-- `NavIcons`
-- `UIHelpers`
-- `Toaster`
+    - `Navbar`
+    - `NavIcons`
+    - `UIHelpers`
+    - `Toaster`
 5. `QueryProvider` wrapping page content
 
 `app/page.tsx` composes homepage content:
+
 1. Theme-aware 3D sphere background (`DisplacementSphere`, client-only dynamic import).
 2. Grid background wrapper (`GridBackgroudLayout`).
 3. Main content wrapper (`MainComponent`) with section sequence:
+
 - Intro + scroll-down cue
 - About
 - Footer
@@ -58,11 +64,13 @@ Main homepage sections currently rendered:
 ## 4) UI System and Styling
 
 Styling layers:
+
 - Tailwind utilities (`tailwind.config.ts`, `app/globals.css`).
 - Component-scoped CSS Modules (e.g. `About.module.css`, `Footer.module.css`).
 - Targeted plain CSS files for specific effects (`Intro.css`, `ScramblingText.css`).
 
 Tailwind configuration:
+
 - Dark mode via class strategy.
 - NextUI plugin enabled.
 - `tailwindcss-animate` enabled.
@@ -70,11 +78,13 @@ Tailwind configuration:
 - Root color CSS variables auto-generated via plugin helper.
 
 Reusable UI components include:
+
 - `StyledButton`, `StyledLink`, `SectionHeading`, `ThemeSwitch`, `ScrollDown`, `ScrollIndicator`, icon set components, etc.
 
 ## 5) Motion and Visual Effects
 
 Animation stack:
+
 - Framer Motion used in multiple UI areas (example: navbar entrance animation).
 - Intro text effects:
 - Decoder text (`components/ui/DecoderText`)
@@ -82,6 +92,7 @@ Animation stack:
 - Scroll cues and transitions (`ScrollDown`, `ScrollUpButton`, indicators)
 
 3D/WebGL stack:
+
 - `components/ui/DisplacementSphere/DisplacementSphere.tsx`
 - Wrapped under `WebGLWrapper` and error-boundary protection.
 - Theme-aware rerender HOC: `components/hoc/withThemeRerender.tsx`.
@@ -89,9 +100,11 @@ Animation stack:
 ## 6) Content and Configuration Sources
 
 Primary content/config lives in:
+
 - `utils/config.ts`
 
 Contains:
+
 - Navigation/hash route metadata
 - Intro animated titles
 - Profile texts (short/long descriptions)
@@ -100,6 +113,7 @@ Contains:
 - Experience/project datasets (available for current/future section usage)
 
 Other utility modules:
+
 - `utils/timing.ts` for animation delays/durations.
 - `utils/fonts.ts` for font definitions.
 - `utils/cn.ts` for className merging.
@@ -108,6 +122,7 @@ Other utility modules:
 ## 7) State and Data Patterns
 
 Current state patterns:
+
 - Local component state for UI interactions (e.g., About section expand/collapse).
 - Theme state via `next-themes`.
 - React Query client is available app-wide through `QueryProvider`, even if currently lightly used.
@@ -117,6 +132,7 @@ No centralized Redux store is present for non-agent portfolio features.
 ## 8) API Surface
 
 Current non-agent route:
+
 - `app/api/route.ts`
 - `GET` returns a simple health/status JSON payload.
 
@@ -125,18 +141,21 @@ This can be used as a baseline connectivity/health endpoint.
 ## 9) Tooling and Build Configuration
 
 Build/dev scripts (`package.json`):
+
 - `npm run dev`
 - `npm run build`
 - `npm run start`
 - `npm run lint`
 
 TypeScript (`tsconfig.json`):
+
 - `strict: true`
 - path alias `@/* -> ./*`
 - `moduleResolution: bundler`
 - Next.js plugin enabled
 
 Next config:
+
 - `next.config.mjs` currently minimal/default.
 
 ## 10) Directory Map (Portfolio-Relevant)
@@ -154,6 +173,7 @@ Next config:
 ## 11) Notes for Contributors
 
 When extending portfolio UI:
+
 1. Prefer additive section/component changes over broad refactors.
 2. Keep styling consistent with existing Tailwind + CSS Module patterns.
 3. Keep WebGL effects guarded by error boundaries and client-only rendering where needed.
