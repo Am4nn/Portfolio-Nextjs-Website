@@ -1,6 +1,7 @@
 import OpenAI from "openai";
 import { buildPlannerPrompt, parsePlannerRequestBody, parseToolPlan, PLANNER_ALLOWED_TOOLS } from "@/lib/agent/runtime/planner-schema";
 import { createLocalPlan } from "@/lib/agent/runtime/local-planner";
+import { AGENT_ENABLED } from "@/lib/agent/core/config";
 import { ResponseCreateParamsNonStreaming } from "openai/resources/responses/responses.mjs";
 
 const PLAN_TOOL_NAME = "submit_plan";
@@ -376,6 +377,15 @@ const requestOpenAiPlan = async (request: ReturnType<typeof parsePlannerRequestB
 };
 
 export async function POST(request: Request) {
+  if (!AGENT_ENABLED) {
+    return Response.json(
+      {
+        error: "Agent endpoint is disabled",
+      },
+      { status: 403 }
+    );
+  }
+
   try {
     const body = await request.json();
     const parsedRequest = parsePlannerRequestBody(body);
