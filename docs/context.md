@@ -1,305 +1,161 @@
-# 🧠 Portfolio AI Sandbox Agent – Architecture Context
-
-## 🚀 Vision
-
-We are building a **Level 3 Experimental Sandbox AI Agent** inside my Next.js portfolio.
-
-This is NOT just a chatbot.
-
-It is a browser-contained autonomous AI agent capable of:
-
-Understand → Discover → Plan → Execute → Observe → Reflect → Repeat
-
-The agent can mutate UI dynamically through a controlled tool system.
-
-Goal:
-Transform my portfolio into a conversational, interactive, evolving UI experience.
-
----
-
-# 🏗 Current Tech Stack
-
-- Next.js 14 (App Router)
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- Three.js
-- API routes (serverless)
-- Component-based architecture
-
----
-
-# 🧠 Target System Design
-
-We are building a mini AI runtime inside the browser.
-
-High-Level Architecture:
-
-User Input
-    ↓
-Agent Runtime
-    ↓
-Planner LLM
-    ↓
-Tool Dispatcher
-    ↓
-UI State Engine
-    ↓
-UI Mutation
-    ↓
-Observation Snapshot
-    ↓
-Reflection
-    ↓
-Repeat if needed
-
----
-
-# 🧩 Core Design Principles
-
-1. AI never directly manipulates DOM.
-2. All mutations go through controlled tools.
-3. UI state is centralized and observable.
-4. Agent must discover environment before mutating.
-5. Reflection loop allowed (max 3 iterations).
-6. All changes must be reversible (snapshot system).
-
----
-
-# 🔎 Agent Capabilities
-
-The agent must be able to:
-
-- Discover UI structure
-- Query current theme
-- Query component visibility
-- Query styles of elements
-- Modify styles (within whitelist)
-- Toggle sections
-- Reorder sections
-- Replace content
-- Animate components
-- Control Three.js canvas
-- Save and restore UI state
-- Self-evaluate goal completion
-
----
-
-# 🔧 Tool System (Dispatcher Layer)
-
-All agent actions must use tools.
-
-## 🔍 Discovery Tools
-
-- getDOMTreeSummary()
-- getComputedStyleSummary(id)
-- listComponents()
-- getTheme()
-- getLayoutMode()
-
-## 🎨 Visual Tools
-
-- updateCSS(id, styleObject)
-- addClass(id, className)
-- removeClass(id, className)
-- animate(id, animationType)
-- changeTheme(themeName)
-
-## 🧱 Layout Tools
-
-- toggleSection(id)
-- reorderSections(orderArray)
-- changeLayout(mode)
-
-## 📝 Content Tools
-
-- updateText(id, content)
-- replaceWithComponent(id, componentName)
-
-## 🎮 Canvas Tools (Three.js)
-
-- drawDiagram(type)
-- clearCanvas()
-- animateTraffic()
-- changeCameraMode(mode)
-
-## 🧠 State Control
-
-- saveStateSnapshot()
-- restoreStateSnapshot(snapshotId)
-
----
-
-# 🛡 Guardrails
-
-- No raw innerHTML injection
-- No raw JS execution
-- CSS whitelist:
-  - color
-  - background
-  - font-size
-  - spacing
-  - transform
-  - opacity
-- Max 3 reflection loops
-- Mutation validation layer required
-- Auto-restore if layout breaks
-
----
-
-# 🧠 Agent Internal Roles
-
-We use multi-stage reasoning.
-
-## 1️⃣ Planner
-
-- Interprets user intent
-- Breaks into steps
-- Chooses tools
-- Estimates risk
-
-## 2️⃣ Executor
-
-- Converts steps into tool calls
-- Dispatches actions
-
-## 3️⃣ Reflector
-
-- Receives updated UI snapshot
-- Checks if goal achieved
-- Refines plan if needed
-
----
-
-# 🧩 UI State Engine
-
-We must introduce centralized UI state.
-
-Suggested:
-- Zustand or Reducer-based store
-
-Example UI State:
-
-{
-  theme: "light",
-  layoutMode: "default",
-  visibleSections: ["hero", "projects"],
-  sectionOrder: [],
-  animations: [],
-  canvasMode: null
-}
-
-UI reacts to state.
-Agent modifies state via dispatcher.
-
----
-
-# 🔥 Experimental Modes
-
-Examples we want to support:
-
-- "Make it cyberpunk"
-- "Optimize for recruiter"
-- "Break and rebuild layout"
-- "Make experience more impressive"
-- "Enter hacker mode"
-- "Show only backend projects"
-- "Turn this into AI dashboard"
-
----
-
-# 🧠 Discovery Layer Design
-
-Agent must first call discovery tools before mutating.
-
-We will provide structured UI metadata like:
-
-{
-  components: [
-    { id: "hero", type: "section", visible: true },
-    { id: "experience", type: "section", visible: true },
-    { id: "projects", type: "section", visible: true }
-  ],
-  theme: "light",
-  layoutMode: "default"
-}
-
-Agent reasons from structured data, not raw DOM.
-
----
-
-# 📦 Required New System Modules
-
-We must implement:
-
-1. AgentRuntime
-2. ToolRegistry
-3. Dispatcher
-4. MutationValidator
-5. SnapshotManager
-6. UIStateStore
-7. AgentPanel (optional thought display)
-
----
-
-# 🎯 Implementation Plan (Phased)
-
-## Phase 1 – Foundation
-
-- Add centralized UI state
-- Add tool registry
-- Add dispatcher
-- Add snapshot system
-- Add basic theme & section tools
-
-## Phase 2 – Agent Loop
-
-- Add Planner
-- Add Executor
-- Add Reflection logic
-- Add iteration control
-
-## Phase 3 – Advanced Sandbox
-
-- Canvas control
-- Layout mutations
-- Autonomous theme generation
-- Risk scoring
-- Self-healing system
-
----
-
-# ❓ Open Questions To Resolve
-
-1. Should the agent run fully client-side or hybrid?
-2. Where should the agent runtime live?
-   - /lib/agent
-   - /core/agent
-3. Should tool execution be optimistic or transactional?
-4. Should mutations be animated by default?
-5. Should we expose agent thoughts to user?
-6. Do we persist session state across reload?
-
----
-
-# 🧠 Target Outcome
-
-We are not building a chatbot.
-
-We are building:
-
-A browser-contained AI agent capable of safely mutating and evolving the UI in real time.
-
-If executed correctly, this will demonstrate:
-
-- Advanced AI integration
-- Tool orchestration
-- Frontend system design
-- Safe mutation architecture
-- Autonomous planning loops
-- Product-level thinking
-
-# Special Notes
-
-The system uses strict server–client separation.
-Use OpenAI Agent
+# Portfolio Project Context (Non-Agent)
+
+This document describes the current portfolio application architecture and technical context.
+
+## 1) Project Overview
+
+- Framework: Next.js 14 (App Router)
+- Language: TypeScript (strict mode)
+- Runtime: React 18
+- Styling: Tailwind CSS + CSS Modules + NextUI components
+- Motion/UI polish: Framer Motion
+- 3D visuals: Three.js + `@react-three/fiber` + `@react-three/drei`
+- Theme system: `next-themes` (class-based, default dark)
+- Data utilities: React Query provider is wired globally
+- Deployment target: Vercel (as indicated by analytics/speed-insights usage)
+
+Core purpose:
+- Serve a personal portfolio site with animated intro, about section, navigation, themed UI, and supporting visual effects.
+
+## 2) High-Level App Structure
+
+Key app entry files:
+- `app/layout.tsx`: global providers, navbar, nav icons, toaster, shared wrappers.
+- `app/page.tsx`: homepage composition and section rendering.
+- `app/globals.css`: global styles/tokens.
+- Error/loading routes:
+- `app/error.tsx`
+- `app/global-error.tsx`
+- `app/loading.tsx`
+- `app/not-found.tsx`
+
+Main homepage sections currently rendered:
+- Intro (`app/sections/Intro/Intro.tsx`)
+- About (`app/sections/About/About.tsx`)
+- Footer (`components/ui/Footer/Footer.tsx`)
+
+## 3) Rendering and Composition Flow
+
+`app/layout.tsx` composes:
+1. `ErrorBoundary`
+2. `ThemeProvider` (`components/providers/ThemeProvider.tsx`)
+3. `NextUIProvider`
+4. Global UI:
+- `Navbar`
+- `NavIcons`
+- `UIHelpers`
+- `Toaster`
+5. `QueryProvider` wrapping page content
+
+`app/page.tsx` composes homepage content:
+1. Theme-aware 3D sphere background (`DisplacementSphere`, client-only dynamic import).
+2. Grid background wrapper (`GridBackgroudLayout`).
+3. Main content wrapper (`MainComponent`) with section sequence:
+- Intro + scroll-down cue
+- About
+- Footer
+
+## 4) UI System and Styling
+
+Styling layers:
+- Tailwind utilities (`tailwind.config.ts`, `app/globals.css`).
+- Component-scoped CSS Modules (e.g. `About.module.css`, `Footer.module.css`).
+- Targeted plain CSS files for specific effects (`Intro.css`, `ScramblingText.css`).
+
+Tailwind configuration:
+- Dark mode via class strategy.
+- NextUI plugin enabled.
+- `tailwindcss-animate` enabled.
+- Custom background utility generators (`bg-grid`, `bg-grid-small`, `bg-dot`).
+- Root color CSS variables auto-generated via plugin helper.
+
+Reusable UI components include:
+- `StyledButton`, `StyledLink`, `SectionHeading`, `ThemeSwitch`, `ScrollDown`, `ScrollIndicator`, icon set components, etc.
+
+## 5) Motion and Visual Effects
+
+Animation stack:
+- Framer Motion used in multiple UI areas (example: navbar entrance animation).
+- Intro text effects:
+- Decoder text (`components/ui/DecoderText`)
+- Scrambling text (`components/ui/ScramblingText`)
+- Scroll cues and transitions (`ScrollDown`, `ScrollUpButton`, indicators)
+
+3D/WebGL stack:
+- `components/ui/DisplacementSphere/DisplacementSphere.tsx`
+- Wrapped under `WebGLWrapper` and error-boundary protection.
+- Theme-aware rerender HOC: `components/hoc/withThemeRerender.tsx`.
+
+## 6) Content and Configuration Sources
+
+Primary content/config lives in:
+- `utils/config.ts`
+
+Contains:
+- Navigation/hash route metadata
+- Intro animated titles
+- Profile texts (short/long descriptions)
+- Social links
+- Skills list
+- Experience/project datasets (available for current/future section usage)
+
+Other utility modules:
+- `utils/timing.ts` for animation delays/durations.
+- `utils/fonts.ts` for font definitions.
+- `utils/cn.ts` for className merging.
+- `utils/types.ts` shared type aliases.
+
+## 7) State and Data Patterns
+
+Current state patterns:
+- Local component state for UI interactions (e.g., About section expand/collapse).
+- Theme state via `next-themes`.
+- React Query client is available app-wide through `QueryProvider`, even if currently lightly used.
+
+No centralized Redux store is present for non-agent portfolio features.
+
+## 8) API Surface
+
+Current non-agent route:
+- `app/api/route.ts`
+- `GET` returns a simple health/status JSON payload.
+
+This can be used as a baseline connectivity/health endpoint.
+
+## 9) Tooling and Build Configuration
+
+Build/dev scripts (`package.json`):
+- `npm run dev`
+- `npm run build`
+- `npm run start`
+- `npm run lint`
+
+TypeScript (`tsconfig.json`):
+- `strict: true`
+- path alias `@/* -> ./*`
+- `moduleResolution: bundler`
+- Next.js plugin enabled
+
+Next config:
+- `next.config.mjs` currently minimal/default.
+
+## 10) Directory Map (Portfolio-Relevant)
+
+- `app/`: routes, layout, sections, global styles.
+- `components/`:
+- `ui/` visual and interactive components
+- `wrapper/` structural wrappers (error boundary, layout wrappers, WebGL wrapper)
+- `providers/` app-level providers
+- `hoc/` cross-cutting component enhancers
+- `utils/`: constants, timings, fonts, class and helper utilities.
+- `public/`: static assets (images, icons, previews, documents).
+- `docs/`: project documentation and plans.
+
+## 11) Notes for Contributors
+
+When extending portfolio UI:
+1. Prefer additive section/component changes over broad refactors.
+2. Keep styling consistent with existing Tailwind + CSS Module patterns.
+3. Keep WebGL effects guarded by error boundaries and client-only rendering where needed.
+4. Use `utils/config.ts` as the canonical content source for profile/metadata-driven UI.
+5. Preserve accessibility labels and semantic structure present in existing components.

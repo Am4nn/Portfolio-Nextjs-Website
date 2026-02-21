@@ -108,8 +108,9 @@ export default function RootLayout({ children }: ReadOnlyChildren) {
 
                 <Toaster position="top-center" reverseOrder={false} />
 
+                <AgentPanel />
+
               </NextUIProvider>
-              <AgentPanel />
             </AgentProvider>
           </ThemeProvider>
         </ErrorBoundary>

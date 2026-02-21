@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button, Divider, Input } from "@nextui-org/react";
 import { Bot, ChevronDown, GripHorizontal, RotateCw } from "lucide-react";
+import { AGENT_ENABLED } from "../core/config";
 import { useAgent } from "../state/agent-context";
 import styles from "./AgentPanel.module.css";
 
@@ -114,7 +115,7 @@ const joinClassNames = (...classNames: Array<string | undefined | false>) => {
   return classNames.filter(Boolean).join(" ");
 };
 
-export const AgentPanel: React.FC = () => {
+const AgentPanelEnabled: React.FC = () => {
   const { state, runGoal, stopRun, restoreSnapshot } = useAgent();
   const [goal, setGoal] = useState("");
   const [open, setOpen] = useState(false);
@@ -413,4 +414,12 @@ export const AgentPanel: React.FC = () => {
       )}
     </div>
   );
+};
+
+export const AgentPanel: React.FC = () => {
+  if (!AGENT_ENABLED) {
+    return null;
+  }
+
+  return <AgentPanelEnabled />;
 };

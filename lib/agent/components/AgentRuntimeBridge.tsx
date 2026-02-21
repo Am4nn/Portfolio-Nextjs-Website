@@ -2,10 +2,11 @@
 
 import React, { useEffect } from "react";
 import { useTheme } from "next-themes";
+import { AGENT_ENABLED } from "../core/config";
 import { MutationEngine } from "../dom/mutation-engine";
 import { useAgentRuntimeContext } from "../state/agent-context";
 
-export const AgentRuntimeBridge: React.FC = () => {
+const AgentRuntimeBridgeEnabled: React.FC = () => {
   const { state, dispatch } = useAgentRuntimeContext();
   const { resolvedTheme, setTheme } = useTheme();
 
@@ -26,4 +27,12 @@ export const AgentRuntimeBridge: React.FC = () => {
   }, [dispatch, resolvedTheme, state.theme]);
 
   return <MutationEngine />;
+};
+
+export const AgentRuntimeBridge: React.FC = () => {
+  if (!AGENT_ENABLED) {
+    return null;
+  }
+
+  return <AgentRuntimeBridgeEnabled />;
 };
