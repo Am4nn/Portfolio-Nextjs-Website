@@ -1,7 +1,7 @@
 import { MAX_REFLECTION_LOOPS } from "./constants";
 
 export const AGENT_ENABLED =
-  process.env.NEXT_PUBLIC_AGENT_ENABLED !== "false";
+  process.env.NEXT_PUBLIC_AGENT_ENABLED === "true";
 
 export const AGENT_REFLECTION_ENABLED =
   process.env.NEXT_PUBLIC_AGENT_REFLECTION_ENABLED !== "false";
