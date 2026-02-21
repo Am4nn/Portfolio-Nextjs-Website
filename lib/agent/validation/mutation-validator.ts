@@ -80,22 +80,23 @@ const validateReorderSections = (input: Record<string, unknown>): ValidationResu
   if (!isValidStringArray(input.orderArray)) {
     return { ok: false, error: "orderArray must be a string array" };
   }
+  const orderArray = input.orderArray;
 
-  // if (input.orderArray.length !== SECTION_KEYS.length) {
-  //   return { ok: false, error: "orderArray must include all sections exactly once" };
-  // }
+  if (orderArray.length !== SECTION_KEYS.length) {
+    return { ok: false, error: "orderArray must include all sections exactly once" };
+  }
 
-  const unknown = input.orderArray.filter(section => !SECTION_KEYS.includes(section));
+  const unknown = orderArray.filter(section => !SECTION_KEYS.includes(section));
   if (unknown.length > 0) {
     return { ok: false, error: `Unknown sections in orderArray: ${unknown.join(", ")}` };
   }
 
-  const hasDuplicates = new Set(input.orderArray).size !== input.orderArray.length;
+  const hasDuplicates = new Set(orderArray).size !== orderArray.length;
   if (hasDuplicates) {
     return { ok: false, error: "orderArray contains duplicate section ids" };
   }
 
-  const missingSections = SECTION_KEYS.filter(section => !input.orderArray.includes(section));
+  const missingSections = SECTION_KEYS.filter(section => !orderArray.includes(section));
   if (missingSections.length > 0) {
     return { ok: false, error: `Missing sections in orderArray: ${missingSections.join(", ")}` };
   }
@@ -123,7 +124,6 @@ export const validateToolCall = (
       return { ok: true };
     case "animate":
       if (!validateTarget(input.id)) {
-        console.log('❤️', input.id, discovery);
         return { ok: false, error: "Unknown target id for animate" };
       }
       if (typeof input.animationType !== "string") {
