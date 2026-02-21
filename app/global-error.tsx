@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from "react"
+import SomethingWentWrong from '@/components/ui/Error/SomethingWentWrong'
 
 export default function GlobalError({
   error,
@@ -18,11 +19,12 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        <h2>Something went wrong!</h2>
-        {/* Attempt to recover by trying to re-render the segment */}
-        <button style={{
-          border: '1px solid #ccc', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer'
-        }} onClick={reset}>Try again</button>
+        <SomethingWentWrong
+          title="Something went wrong"
+          description="Sorry — something unexpected happened. You can try again or report this issue."
+          error={error}
+          reset={reset}
+        />
       </body>
     </html>
   )

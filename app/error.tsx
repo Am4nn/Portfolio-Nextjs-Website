@@ -1,6 +1,7 @@
 'use client' // Error components must be Client Components
 
 import { useEffect } from 'react'
+import SomethingWentWrong from '@/components/ui/Error/SomethingWentWrong'
 
 export default function Error({
   error,
@@ -16,12 +17,11 @@ export default function Error({
   }, [error]);
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
-      {/* Attempt to recover by trying to re-render the segment */}
-      <button style={{
-        border: '1px solid #ccc', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer'
-      }} onClick={reset}>Try again</button>
-    </div>
+    <SomethingWentWrong
+      title="Something went wrong"
+      description="An unexpected error occurred. Click try again to attempt recovery."
+      error={error}
+      reset={reset}
+    />
   )
 }

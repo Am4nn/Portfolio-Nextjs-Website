@@ -1,0 +1,13 @@
+.spooky {
+  display: inline-block;
+  animation: spooky 2s alternate infinite linear;
+}
+
+@keyframes spooky {
+  from {
+    transform: translateY(0.15em) scaleY(0.95);
+  }
+  to {
+    transform: translateY(-0.15em);
+  }
+}
