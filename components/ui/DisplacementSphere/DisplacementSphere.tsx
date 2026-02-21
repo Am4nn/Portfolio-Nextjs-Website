@@ -221,6 +221,7 @@ const DisplacementSphere: React.FC = (props) => {
       animate={{ opacity: 1 }}
       transition={{ ease: cubicBezier(0.4, 0.0, 0.2, 1), duration: DISPLACEMENT_SPHERE_LOAD_DURATION }}
       className="bg-background transition-colors-400 absolute inset-0"
+      data-agent-id="hero-canvas"
       aria-hidden
       ref={canvasRef}
       {...props}

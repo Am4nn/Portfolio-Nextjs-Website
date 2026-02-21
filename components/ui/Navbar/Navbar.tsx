@@ -22,6 +22,7 @@ const Navbar: React.FC = () => (
       isBlurred={false}
       maxWidth="full"
       className="opacity-0 bg-transparent fixed transition-colors-400"
+      data-agent-id="navbar"
       initial="initial"
       animate="blurIn"
       exit="initial"

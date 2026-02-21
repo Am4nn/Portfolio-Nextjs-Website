@@ -9,6 +9,7 @@ import Footer from "@/components/ui/Footer/Footer";
 import ScrollDown from "@/components/ui/ScrollDown/ScrollDown";
 import withThemeRerender from "@/components/hoc/withThemeRerender";
 import { SCROLL_DOWN_LOAD_DELAY } from "@/utils/timing";
+import { useAgent } from "@/lib/agent";
 import Intro from "./sections/Intro/Intro";
 import About from "./sections/About/About";
 
@@ -19,22 +20,40 @@ const DisplacementSphere = dynamic(() => import("@/components/ui/DisplacementSph
 
 const ThemeAwareDisplacementSphere = withThemeRerender(DisplacementSphere);
 
-const Home = () => (
-  <Fragment>
-    <ErrorBoundary>
-      <WebGLWrapper>
-        <ThemeAwareDisplacementSphere themeAware />
-      </WebGLWrapper>
-    </ErrorBoundary>
-    <GridBackgroudLayout>
-      <MainComponent>
+const Home = () => {
+  const { state } = useAgent();
+
+  const sectionRenderMap: Record<string, React.ReactNode> = {
+    intro: (
+      <Fragment key="intro">
         <Intro />
         <ScrollDown mountDelay={SCROLL_DOWN_LOAD_DELAY} href="#about" />
-        <About />
-        <Footer />
-      </MainComponent>
-    </GridBackgroudLayout>
-  </Fragment>
-);
+      </Fragment>
+    ),
+    about: <About key="about" />,
+    footer: <Footer key="footer" />,
+  };
+
+  const orderedSectionKeys = state.sectionOrder;
+
+  const visibleSectionSet = new Set(state.visibleSections);
+
+  return (
+    <Fragment>
+      <ErrorBoundary>
+        <WebGLWrapper>
+          <ThemeAwareDisplacementSphere themeAware />
+        </WebGLWrapper>
+      </ErrorBoundary>
+      <GridBackgroudLayout>
+        <MainComponent>
+          {orderedSectionKeys
+            .filter(sectionId => visibleSectionSet.has(sectionId))
+            .map(sectionId => sectionRenderMap[sectionId])}
+        </MainComponent>
+      </GridBackgroudLayout>
+    </Fragment>
+  );
+};
 
 export default Home;
