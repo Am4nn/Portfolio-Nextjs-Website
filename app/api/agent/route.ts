@@ -237,7 +237,17 @@ const toCandidatePayload = (value: unknown): Record<string, unknown> | null => {
   return null;
 };
 
+const hasResponseOutput = (
+  response: Awaited<ReturnType<OpenAI["responses"]["create"]>>
+): response is Extract<Awaited<ReturnType<OpenAI["responses"]["create"]>>, { output: unknown[] }> => {
+  return "output" in response && Array.isArray(response.output);
+};
+
 const extractOpenAiPlanPayload = (response: Awaited<ReturnType<OpenAI["responses"]["create"]>>) => {
+  if (!hasResponseOutput(response)) {
+    return null;
+  }
+
   const candidates: unknown[] = [];
 
   response.output.forEach(item => {
@@ -348,8 +358,6 @@ const requestOpenAiPlan = async (request: ReturnType<typeof parsePlannerRequestB
     }
 
     const response = await client.responses.create(body);
-
-
     const parsed = extractOpenAiPlanPayload(response);
     if (!parsed) {
       return buildFallbackResponse(request, "openai_invalid_payload");
