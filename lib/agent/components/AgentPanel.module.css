@@ -1,6 +1,7 @@
 .agentDock {
   position: fixed;
-  right: 14px;
+  /* offset slightly to avoid overlapping the scroll-up button */
+  right: 64px;
   bottom: 14px;
   z-index: 1300;
   width: auto;
@@ -430,7 +431,7 @@
 
 @media (max-width: 640px) {
   .agentDock {
-    right: 8px;
+    right: 48px;
     bottom: 10px;
   }
 
