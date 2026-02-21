@@ -13,7 +13,7 @@ import UIHelpers from "@/components/ui/UIHelpers/UIHelpers";
 import Navbar from "@/components/ui/Navbar/Navbar";
 import dynamic from 'next/dynamic';
 import ErrorBoundary from '@/components/wrapper/ErrorBoundary/ErrorBoundary';
-import { AgentPanel, AgentProvider } from "@/lib/agent";
+import AgentLoader from '@/components/AgentLoader';
 import "./globals.css";
 
 const NavIcons = dynamic(() => import('@/components/ui/NavIcons/NavIcons'));
@@ -94,24 +94,22 @@ export default function RootLayout({ children }: ReadOnlyChildren) {
       <body className={cn(gotham.className, gotham.variable, 'antialiased', 'overflow-x-hidden')}>
         <ErrorBoundary>
           <ThemeProvider>
-            <AgentProvider>
-              <NextUIProvider>
+            <NextUIProvider>
 
-                <Navbar />
-                <NavIcons />
+              <Navbar />
+              <NavIcons />
 
-                <QueryProvider>
+              <QueryProvider>
+                <AgentLoader>
                   {children}
-                </QueryProvider>
+                </AgentLoader>
+              </QueryProvider>
 
-                <UIHelpers />
+              <UIHelpers />
 
-                <Toaster position="top-center" reverseOrder={false} />
+              <Toaster position="top-center" reverseOrder={false} />
 
-                <AgentPanel />
-
-              </NextUIProvider>
-            </AgentProvider>
+            </NextUIProvider>
           </ThemeProvider>
         </ErrorBoundary>
 

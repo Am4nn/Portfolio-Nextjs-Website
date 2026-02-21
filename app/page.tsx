@@ -9,7 +9,7 @@ import Footer from "@/components/ui/Footer/Footer";
 import ScrollDown from "@/components/ui/ScrollDown/ScrollDown";
 import withThemeRerender from "@/components/hoc/withThemeRerender";
 import { SCROLL_DOWN_LOAD_DELAY } from "@/utils/timing";
-import { useAgent } from "@/lib/agent";
+import { DEFAULT_SECTION_CONFIG } from "@/lib/sections";
 import Intro from "./sections/Intro/Intro";
 import About from "./sections/About/About";
 
@@ -21,7 +21,7 @@ const DisplacementSphere = dynamic(() => import("@/components/ui/DisplacementSph
 const ThemeAwareDisplacementSphere = withThemeRerender(DisplacementSphere);
 
 const Home = () => {
-  const { state } = useAgent();
+  const { sectionOrder, visibleSections } = DEFAULT_SECTION_CONFIG;
 
   const sectionRenderMap: Record<string, React.ReactNode> = {
     intro: (
@@ -34,9 +34,9 @@ const Home = () => {
     footer: <Footer key="footer" />,
   };
 
-  const orderedSectionKeys = state.sectionOrder;
+  const orderedSectionKeys = sectionOrder;
 
-  const visibleSectionSet = new Set(state.visibleSections);
+  const visibleSectionSet = new Set(visibleSections);
 
   return (
     <Fragment>
