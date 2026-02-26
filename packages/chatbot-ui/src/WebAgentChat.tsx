@@ -107,8 +107,7 @@ export const WebAgentChat: React.FC<WebAgentChatProps> = ({
     setSize();
     window.addEventListener('resize', setSize);
 
-    // Three wave layers — different speed, amplitude, colour, and phase offset
-    const LAYERS = [
+    const EDGE_LAYERS = [
       { amp: 9,  freq: 0.007, speed: 1.1,  color: '#38bdf8', lineWidth: 2,   alpha: 0.85 },
       { amp: 13, freq: 0.005, speed: 0.65, color: '#818cf8', lineWidth: 2.5, alpha: 0.55 },
       { amp: 7,  freq: 0.009, speed: 1.6,  color: '#c084fc', lineWidth: 1.5, alpha: 0.4  },
@@ -117,66 +116,39 @@ export const WebAgentChat: React.FC<WebAgentChatProps> = ({
     const drawEdge = (
       dir: 'top' | 'bottom' | 'left' | 'right',
       amp: number, freq: number, phase: number,
-      color: string, lineWidth: number, alpha: number,
+      color: string, lineWidth: number, alpha: number
     ) => {
-      const W = window.innerWidth;
-      const H = window.innerHeight;
-
-      // Gradient fades to transparent at both ends so corners stay clean
-      let grad: CanvasGradient;
-      if (dir === 'top' || dir === 'bottom') {
-        grad = ctx.createLinearGradient(0, 0, W, 0);
-      } else {
-        grad = ctx.createLinearGradient(0, 0, 0, H);
-      }
+      const W = window.innerWidth, H = window.innerHeight;
+      const grad = dir === 'top' || dir === 'bottom'
+        ? ctx.createLinearGradient(0, 0, W, 0)
+        : ctx.createLinearGradient(0, 0, 0, H);
       grad.addColorStop(0,    'transparent');
       grad.addColorStop(0.08, color);
       grad.addColorStop(0.92, color);
       grad.addColorStop(1,    'transparent');
-
       ctx.lineWidth   = lineWidth;
       ctx.lineCap     = 'round';
       ctx.strokeStyle = grad;
       ctx.globalAlpha = alpha;
       ctx.shadowColor = color;
       ctx.shadowBlur  = 12;
-
       ctx.beginPath();
-      if (dir === 'top') {
-        for (let x = 0; x <= W; x += 3) {
-          const y = 6 + amp * Math.sin(x * freq + phase);
-          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        }
-      } else if (dir === 'bottom') {
-        for (let x = 0; x <= W; x += 3) {
-          const y = H - 6 + amp * Math.sin(x * freq + phase + Math.PI);
-          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        }
-      } else if (dir === 'left') {
-        for (let y = 0; y <= H; y += 3) {
-          const x = 6 + amp * Math.sin(y * freq + phase + Math.PI * 0.5);
-          y === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        }
-      } else {
-        for (let y = 0; y <= H; y += 3) {
-          const x = W - 6 + amp * Math.sin(y * freq + phase + Math.PI * 1.5);
-          y === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-        }
-      }
+      if (dir === 'top')    { for (let x=0;x<=W;x+=3){ const y=6+amp*Math.sin(x*freq+phase);                x?ctx.lineTo(x,y):ctx.moveTo(x,y); } }
+      if (dir === 'bottom') { for (let x=0;x<=W;x+=3){ const y=H-6+amp*Math.sin(x*freq+phase+Math.PI);     x?ctx.lineTo(x,y):ctx.moveTo(x,y); } }
+      if (dir === 'left')   { for (let y=0;y<=H;y+=3){ const x=6+amp*Math.sin(y*freq+phase+Math.PI*0.5);   y?ctx.lineTo(x,y):ctx.moveTo(x,y); } }
+      if (dir === 'right')  { for (let y=0;y<=H;y+=3){ const x=W-6+amp*Math.sin(y*freq+phase+Math.PI*1.5); y?ctx.lineTo(x,y):ctx.moveTo(x,y); } }
       ctx.stroke();
     };
 
     const animate = (ts: number) => {
-      const t = ts * 0.001; // seconds
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-
-      for (const { amp, freq, speed, color, lineWidth, alpha } of LAYERS) {
-        const phase = t * speed;
-        for (const dir of ['top', 'bottom', 'left', 'right'] as const) {
-          drawEdge(dir, amp, freq, phase, color, lineWidth, alpha);
-        }
+      for (const { amp, freq, speed, color, lineWidth, alpha } of EDGE_LAYERS) {
+        const phase = ts * 0.001 * speed;
+        drawEdge('top',    amp, freq, phase,                color, lineWidth, alpha);
+        drawEdge('bottom', amp, freq, phase + Math.PI,      color, lineWidth, alpha);
+        drawEdge('left',   amp, freq, phase + Math.PI*0.5,  color, lineWidth, alpha);
+        drawEdge('right',  amp, freq, phase + Math.PI*1.5,  color, lineWidth, alpha);
       }
-
       ctx.globalAlpha = 1;
       ctx.shadowBlur  = 0;
       rafRef.current = requestAnimationFrame(animate);
@@ -187,13 +159,12 @@ export const WebAgentChat: React.FC<WebAgentChatProps> = ({
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener('resize', setSize);
-      // Delay clear to let the CSS fade-out finish before blanking canvas
       setTimeout(() => {
         const c = canvasRef.current;
         if (c) c.getContext('2d')?.clearRect(0, 0, window.innerWidth, window.innerHeight);
       }, 900);
     };
-  }, [isStreaming]);
+  }, [isStreaming, position]);
 
   const stopStreaming = useCallback(() => {
     abortRef.current = true;
