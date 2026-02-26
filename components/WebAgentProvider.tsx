@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useEffect, useMemo } from 'react';
-import { createWebAgent } from '@anthropic-ai/web-agent';
-import { WebAgentChat } from '@anthropic-ai/chatbot-ui';
+import { createWebAgent } from '@agent/web-agent';
+import { WebAgentChat } from '@agent/chatbot-ui';
 import { useWebAgentBridge } from '@/lib/web-agent-bridge';
 
 /**
@@ -17,7 +17,6 @@ export default function WebAgentProvider() {
   const agent = useMemo(() => {
     return createWebAgent({
       endpoint: '/api/agent/chat',
-      model: 'claude-sonnet-4-20250514',
     });
   }, []);
 

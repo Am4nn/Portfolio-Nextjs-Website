@@ -12,6 +12,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@anthropic-ai/chatbot-ui": "file:packages/chatbot-ui",
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@anthropic-ai/web-agent": "file:packages/web-agent",
+    "@google/genai": "^1.43.0",
     "@nextui-org/react": "^2.4.8",
     "@react-three/drei": "^9.103.1",
     "@react-three/fiber": "^8.16.1",
@@ -25,9 +29,7 @@
     "mini-svg-data-uri": "^1.4.4",
     "next": "^14.2.15",
     "next-themes": "^0.3.0",
-    "@anthropic-ai/chatbot-ui": "file:packages/chatbot-ui",
-    "@anthropic-ai/sdk": "^0.39.0",
-    "@anthropic-ai/web-agent": "file:packages/web-agent",
+    "openai": "^6.25.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",

@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { setupBridge, teardownBridge, createStateBridge } from '@anthropic-ai/web-agent';
-import type { RegisteredComponent } from '@anthropic-ai/web-agent';
+import { setupBridge, teardownBridge, createStateBridge } from '@agent/web-agent';
+import type { RegisteredComponent } from '@agent/web-agent';
 
 /**
  * Hook that sets up the window.__webAgentBridge for the Next.js app.

@@ -23,7 +23,6 @@ import { executeTool } from './tools/executors';
 export function createWebAgent(config: WebAgentConfig): WebAgent {
   const {
     endpoint,
-    model = 'claude-sonnet-4-5',
     systemPrompt: customSystemPrompt,
     tools: toolFilter = 'all',
     bridge,
@@ -113,7 +112,6 @@ export function createWebAgent(config: WebAgentConfig): WebAgent {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            model,
             system: systemPrompt,
             messages: conversationMessages,
             tools: activeTools,
@@ -246,6 +244,13 @@ export function createWebAgent(config: WebAgentConfig): WebAgent {
             actions: actions.length > 0 ? actions : undefined,
             timestamp: Date.now(),
           });
+
+          if (stopReason === 'max_tokens' || stopReason === 'length') {
+            yield {
+              type: 'error',
+              error: 'Response was cut off due to reaching the maximum token limit. Please tell me to continue or be more specific.'
+            };
+          }
         }
       } catch (err) {
         const errorMsg = err instanceof Error ? err.message : 'Unknown error';

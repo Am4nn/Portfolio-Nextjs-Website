@@ -4,7 +4,7 @@ import type { WebAgentBridge, RegisteredComponent } from './types';
  * Create and register the window.__webAgentBridge for React/framework integration.
  *
  * Usage in Next.js:
- *   import { setupBridge } from '@anthropic-ai/web-agent'
+ *   import { setupBridge } from '@agent/web-agent'
  *   setupBridge({ ... })
  */
 export function setupBridge(bridge: WebAgentBridge): void {

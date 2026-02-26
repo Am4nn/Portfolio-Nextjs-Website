@@ -19,10 +19,8 @@ export type ToolName =
   | 'execute_bridge';
 
 export interface WebAgentConfig {
-  /** Endpoint URL for the Anthropic proxy API */
+  /** Endpoint URL for the proxy API */
   endpoint: string;
-  /** Anthropic model to use */
-  model?: string;
   /** Custom system prompt override */
   systemPrompt?: string;
   /** Which tools to expose — 'all' or specific tool names */

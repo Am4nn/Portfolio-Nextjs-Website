@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import type { WebAgent, ChatMessage, ActionLogEntry } from '@anthropic-ai/web-agent';
+import type { WebAgent, ChatMessage, ActionLogEntry } from '@agent/web-agent';
 import styles from './WebAgentChat.module.css';
 
 export interface WebAgentChatProps {
@@ -100,7 +100,7 @@ export const WebAgentChat: React.FC<WebAgentChatProps> = ({
 
     const setSize = () => {
       const dpr = window.devicePixelRatio || 1;
-      canvas.width  = window.innerWidth  * dpr;
+      canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
@@ -108,9 +108,9 @@ export const WebAgentChat: React.FC<WebAgentChatProps> = ({
     window.addEventListener('resize', setSize);
 
     const EDGE_LAYERS = [
-      { amp: 9,  freq: 0.007, speed: 1.1,  color: '#38bdf8', lineWidth: 2,   alpha: 0.85 },
+      { amp: 9, freq: 0.007, speed: 1.1, color: '#38bdf8', lineWidth: 2, alpha: 0.85 },
       { amp: 13, freq: 0.005, speed: 0.65, color: '#818cf8', lineWidth: 2.5, alpha: 0.55 },
-      { amp: 7,  freq: 0.009, speed: 1.6,  color: '#c084fc', lineWidth: 1.5, alpha: 0.4  },
+      { amp: 7, freq: 0.009, speed: 1.6, color: '#c084fc', lineWidth: 1.5, alpha: 0.4 },
     ];
 
     const drawEdge = (
@@ -122,21 +122,21 @@ export const WebAgentChat: React.FC<WebAgentChatProps> = ({
       const grad = dir === 'top' || dir === 'bottom'
         ? ctx.createLinearGradient(0, 0, W, 0)
         : ctx.createLinearGradient(0, 0, 0, H);
-      grad.addColorStop(0,    'transparent');
+      grad.addColorStop(0, 'transparent');
       grad.addColorStop(0.08, color);
       grad.addColorStop(0.92, color);
-      grad.addColorStop(1,    'transparent');
-      ctx.lineWidth   = lineWidth;
-      ctx.lineCap     = 'round';
+      grad.addColorStop(1, 'transparent');
+      ctx.lineWidth = lineWidth;
+      ctx.lineCap = 'round';
       ctx.strokeStyle = grad;
       ctx.globalAlpha = alpha;
       ctx.shadowColor = color;
-      ctx.shadowBlur  = 12;
+      ctx.shadowBlur = 12;
       ctx.beginPath();
-      if (dir === 'top')    { for (let x=0;x<=W;x+=3){ const y=6+amp*Math.sin(x*freq+phase);                x?ctx.lineTo(x,y):ctx.moveTo(x,y); } }
-      if (dir === 'bottom') { for (let x=0;x<=W;x+=3){ const y=H-6+amp*Math.sin(x*freq+phase+Math.PI);     x?ctx.lineTo(x,y):ctx.moveTo(x,y); } }
-      if (dir === 'left')   { for (let y=0;y<=H;y+=3){ const x=6+amp*Math.sin(y*freq+phase+Math.PI*0.5);   y?ctx.lineTo(x,y):ctx.moveTo(x,y); } }
-      if (dir === 'right')  { for (let y=0;y<=H;y+=3){ const x=W-6+amp*Math.sin(y*freq+phase+Math.PI*1.5); y?ctx.lineTo(x,y):ctx.moveTo(x,y); } }
+      if (dir === 'top') { for (let x = 0; x <= W; x += 3) { const y = 6 + amp * Math.sin(x * freq + phase); x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } }
+      if (dir === 'bottom') { for (let x = 0; x <= W; x += 3) { const y = H - 6 + amp * Math.sin(x * freq + phase + Math.PI); x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } }
+      if (dir === 'left') { for (let y = 0; y <= H; y += 3) { const x = 6 + amp * Math.sin(y * freq + phase + Math.PI * 0.5); y ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } }
+      if (dir === 'right') { for (let y = 0; y <= H; y += 3) { const x = W - 6 + amp * Math.sin(y * freq + phase + Math.PI * 1.5); y ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } }
       ctx.stroke();
     };
 
@@ -144,13 +144,13 @@ export const WebAgentChat: React.FC<WebAgentChatProps> = ({
       ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
       for (const { amp, freq, speed, color, lineWidth, alpha } of EDGE_LAYERS) {
         const phase = ts * 0.001 * speed;
-        drawEdge('top',    amp, freq, phase,                color, lineWidth, alpha);
-        drawEdge('bottom', amp, freq, phase + Math.PI,      color, lineWidth, alpha);
-        drawEdge('left',   amp, freq, phase + Math.PI*0.5,  color, lineWidth, alpha);
-        drawEdge('right',  amp, freq, phase + Math.PI*1.5,  color, lineWidth, alpha);
+        drawEdge('top', amp, freq, phase, color, lineWidth, alpha);
+        drawEdge('bottom', amp, freq, phase + Math.PI, color, lineWidth, alpha);
+        drawEdge('left', amp, freq, phase + Math.PI * 0.5, color, lineWidth, alpha);
+        drawEdge('right', amp, freq, phase + Math.PI * 1.5, color, lineWidth, alpha);
       }
       ctx.globalAlpha = 1;
-      ctx.shadowBlur  = 0;
+      ctx.shadowBlur = 0;
       rafRef.current = requestAnimationFrame(animate);
     };
 
@@ -221,7 +221,12 @@ export const WebAgentChat: React.FC<WebAgentChatProps> = ({
             break;
 
           case 'error':
-            fullText += `\n\n⚠️ Error: ${chunk.error}`;
+            let userFriendlyError = chunk.error;
+            // Catch raw Google Gemini rate limits specifically if they leak through
+            if (typeof chunk.error === 'string' && (chunk.error.includes('"code": 429') || chunk.error.includes('RESOURCE_EXHAUSTED') || chunk.error.includes('quota') || chunk.error.includes('Too Many Requests'))) {
+              userFriendlyError = 'Rate limit or quota exceeded for this AI provider. Please verify your API plan limits or try again later.';
+            }
+            fullText += `\n\n⚠️ **Error:** ${userFriendlyError}`;
             setStreamingText(fullText);
             break;
 

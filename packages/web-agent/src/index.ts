@@ -1,4 +1,4 @@
-// @anthropic-ai/web-agent — Main entry point
+// @agent/web-agent — Main entry point
 
 export { createWebAgent } from './agent';
 export { getBrowserContext, getPageData, getUniqueSelector } from './context';

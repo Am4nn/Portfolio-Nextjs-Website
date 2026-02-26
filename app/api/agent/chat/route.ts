@@ -1,19 +1,8 @@
-import Anthropic from '@anthropic-ai/sdk';
-
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
+import { getLLMProvider } from '@/lib/llm/ProviderFactory';
+import { logger } from '@/lib/logger';
 
 export async function POST(request: Request) {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return Response.json(
-      { error: 'ANTHROPIC_API_KEY not configured' },
-      { status: 500 }
-    );
-  }
-
   let body: {
-    model?: string;
     system?: string;
     messages?: unknown[];
     tools?: unknown[];
@@ -26,80 +15,73 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Invalid request body' }, { status: 400 });
   }
 
-  const { model, system, messages, tools, max_tokens } = body;
+  const provider = getLLMProvider();
+
+  logger.chatRequest(provider.constructor.name, body.messages?.length || 0);
+
+  // Check if there are tool results coming in from the last user message
+  const lastMsg = body.messages?.[(body.messages?.length || 1) - 1] as any;
+  if (lastMsg?.role === 'user' && Array.isArray(lastMsg.content)) {
+    lastMsg.content.forEach((block: any) => {
+      if (block.type === 'tool_result') {
+        logger.toolResultReceived(block.tool_use_id, block.content);
+      }
+    });
+  }
 
   const encoder = new TextEncoder();
-  const emit = (
-    controller: ReadableStreamDefaultController,
-    data: Record<string, unknown>
-  ) => {
-    controller.enqueue(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
-  };
 
   const readable = new ReadableStream({
     async start(controller) {
+      let accumulatedText = '';
+
+      const emit = (event: Record<string, unknown>) => {
+        if (event.type === 'text' && typeof event.text === 'string') {
+          accumulatedText += event.text;
+        } else if (event.type === 'tool_use') {
+          logger.toolUse(event.name as string, event.input);
+        } else if (event.type === 'stop') {
+          if (accumulatedText.trim()) {
+            logger.agentReply(accumulatedText);
+          }
+          logger.info(`🏁 Stream finished (reason: ${event.stop_reason})`);
+        } else if (event.type === 'error') {
+          logger.error(`Stream encountered an error: ${event.error}`);
+        }
+
+        controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`));
+      };
+
       try {
-        const stream = client.messages.stream({
-          model: model || 'claude-sonnet-4-5',
-          max_tokens: max_tokens || 8192,
-          system: system || '',
-          messages: (messages || []) as Anthropic.MessageParam[],
-          tools: (tools || []) as Anthropic.Tool[],
-        });
+        await provider.streamChat(
+          {
+            system: body.system,
+            messages: body.messages || [],
+            tools: body.tools || [],
+            max_tokens: body.max_tokens,
+          },
+          emit
+        );
+      } catch (err) {
+        console.error('[Agent API] Raw Error:', err);
+        let errorMsg = err instanceof Error ? err.message : 'Unknown error';
 
-        // Track current tool_use block being assembled from partial JSON
-        let currentToolBlock: {
-          id: string;
-          name: string;
-          inputJson: string;
-        } | null = null;
-
-        for await (const event of stream) {
-          if (event.type === 'content_block_start') {
-            if (event.content_block.type === 'tool_use') {
-              currentToolBlock = {
-                id: event.content_block.id,
-                name: event.content_block.name,
-                inputJson: '',
-              };
+        // Try to parse nested Google API error objects (like quotas/rate-limits)
+        if (typeof errorMsg === 'string' && errorMsg.includes('{')) {
+          try {
+            const parsed = JSON.parse(errorMsg.substring(errorMsg.indexOf('{')));
+            if (parsed?.error?.message) {
+              errorMsg = parsed.error.message;
+            } else if (parsed?.error?.code === 429) {
+              errorMsg = 'Rate limit or quota exceeded. Please try again later or check your API billing plan.';
             }
-          } else if (event.type === 'content_block_delta') {
-            if (event.delta.type === 'text_delta') {
-              emit(controller, { type: 'text', text: event.delta.text });
-            } else if (
-              event.delta.type === 'input_json_delta' &&
-              currentToolBlock
-            ) {
-              currentToolBlock.inputJson += event.delta.partial_json;
-            }
-          } else if (event.type === 'content_block_stop') {
-            if (currentToolBlock) {
-              let input: Record<string, unknown> = {};
-              try {
-                input = JSON.parse(currentToolBlock.inputJson || '{}');
-              } catch {
-                // Malformed JSON — emit empty input
-              }
-              emit(controller, {
-                type: 'tool_use',
-                id: currentToolBlock.id,
-                name: currentToolBlock.name,
-                input,
-              });
-              currentToolBlock = null;
-            }
-          } else if (event.type === 'message_delta') {
-            emit(controller, {
-              type: 'stop',
-              stop_reason: event.delta.stop_reason,
-              usage: event.usage,
-            });
+          } catch {
+            // Ignore parse errors, fallback to original string
           }
         }
-      } catch (err) {
-        const error = err instanceof Error ? err.message : 'Unknown error';
-        console.error('[Agent API]', error);
-        emit(controller, { type: 'error', error });
+
+        logger.error(`Stream encountered an error: ${errorMsg}`);
+        emit({ type: 'error', error: errorMsg });
       } finally {
         controller.close();
       }
