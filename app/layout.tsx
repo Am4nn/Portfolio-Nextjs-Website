@@ -13,10 +13,10 @@ import UIHelpers from "@/components/ui/UIHelpers/UIHelpers";
 import Navbar from "@/components/ui/Navbar/Navbar";
 import dynamic from 'next/dynamic';
 import ErrorBoundary from '@/components/wrapper/ErrorBoundary/ErrorBoundary';
-import AgentLoader from '@/components/AgentLoader';
 import "./globals.css";
 
 const NavIcons = dynamic(() => import('@/components/ui/NavIcons/NavIcons'));
+const WebAgentProvider = dynamic(() => import('@/components/WebAgentProvider'), { ssr: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.amanarya.com/"),
@@ -100,10 +100,10 @@ export default function RootLayout({ children }: ReadOnlyChildren) {
               <NavIcons />
 
               <QueryProvider>
-                <AgentLoader>
-                  {children}
-                </AgentLoader>
+                {children}
               </QueryProvider>
+
+              <WebAgentProvider />
 
               <UIHelpers />
 

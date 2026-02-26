@@ -2,6 +2,9 @@
   "name": "portfolio-next",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -22,7 +25,9 @@
     "mini-svg-data-uri": "^1.4.4",
     "next": "^14.2.15",
     "next-themes": "^0.3.0",
-    "openai": "^6.22.0",
+    "@anthropic-ai/chatbot-ui": "file:packages/chatbot-ui",
+    "@anthropic-ai/sdk": "^0.39.0",
+    "@anthropic-ai/web-agent": "file:packages/web-agent",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
